@@ -16,7 +16,11 @@ import {
   ChevronRight,
   ZoomIn,
   ZoomOut,
-  Maximize2
+  Maximize2,
+  MessageCircle,
+  Mail,
+  Globe,
+  ExternalLink,
 } from 'lucide-react';
 import { ResumePreviewRenderer } from '@/components/preview/ResumePreviewRenderer';
 import { INITIAL_RESUME_DATA } from '@/utils/storage';
@@ -469,6 +473,62 @@ export default function HomePage() {
           </div>
         </div>
       )}
+
+      {/* Long Advertising Banner: Jasa Pembuatan Website Portofolio */}
+      <section className="relative bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 border-b border-indigo-500/25 text-white overflow-hidden py-2.5 sm:py-3 px-3 sm:px-6 z-30">
+        {/* Glow ambient background lights */}
+        <div className="absolute -top-10 left-1/4 w-80 h-24 bg-indigo-500/15 blur-2xl pointer-events-none" />
+        <div className="absolute -top-10 right-1/4 w-80 h-24 bg-cyan-500/15 blur-2xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3 relative z-10">
+          {/* Left Column: Promo Badge & Catchy Value Proposition */}
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left min-w-0">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] sm:text-[11px] font-bold tracking-wide uppercase shadow-xs shrink-0">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Jasa Web Portofolio
+            </span>
+
+            <div className="flex flex-col xl:flex-row xl:items-center gap-0.5 xl:gap-2">
+              <p className="text-xs sm:text-sm font-semibold text-slate-100 leading-tight">
+                Mau CV Anda jadi <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-200 to-violet-300 font-extrabold">Website Portofolio Interaktif & Siap Online</span>?
+              </p>
+              <span className="hidden xl:inline text-slate-500">•</span>
+              <p className="text-[11px] text-slate-300 hidden md:block">
+                Desain Modern, 100% Responsif, Fast Loading & Siap Domain Sendiri
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: Direct Contact CTA Buttons (WhatsApp & Email) */}
+          <div className="flex items-center gap-2 shrink-0 flex-wrap justify-center">
+            {/* WhatsApp CTA Button */}
+            <a
+              href="https://wa.me/62895806317711?text=Halo%20kak,%20saya%20tertarik%20dengan%20jasa%20pembuatan%20web%20portofolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 sm:px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 text-xs font-bold rounded-lg shadow-md shadow-emerald-500/20 flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap shrink-0"
+              title="Hubungi langsung via WhatsApp: 0895806317711"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-slate-950 text-emerald-500" />
+              <span>WhatsApp: 0895806317711</span>
+              <ExternalLink className="w-3 h-3 text-slate-900" />
+            </a>
+
+            {/* Email CTA Button */}
+            <a
+              href="mailto:fajarnf77@gmail.com?subject=Tanya%20Jasa%20Pembuatan%20Web%20Portofolio"
+              className="px-3 sm:px-3.5 py-1.5 bg-slate-900/90 hover:bg-slate-800 active:scale-95 text-slate-200 hover:text-white text-xs font-medium rounded-lg border border-slate-700/80 flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap shrink-0"
+              title="Kirim email ke fajarnf77@gmail.com"
+            >
+              <Mail className="w-3.5 h-3.5 text-indigo-400" />
+              <span>fajarnf77@gmail.com</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* Top Banner & Header */}
       <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
