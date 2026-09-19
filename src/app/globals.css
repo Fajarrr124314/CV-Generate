@@ -45,3 +45,136 @@ body {
 .animate-marquee-right:hover {
   animation-play-state: paused;
 }
+
+/* ==========================================================================
+   PRINT STYLESHEET: A4 Precision Printing for SpaceLive CV & Cover Letter
+   Ensures ONLY the document (#resume-preview) prints, perfectly fitted to A4.
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* Force background colors, borders, graphics, and images to print accurately */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Reset document root */
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide all website chrome, navigation, headers, forms, sidebars, buttons, modals, toasts */
+  .no-print,
+  .no-print *,
+  header,
+  nav,
+  aside,
+  footer,
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Reset layout structure so #resume-preview is not clipped or constrained */
+  body > div,
+  main {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  /* Reset preview section: ensures mobile off-screen (-left-[9999px]) is brought to top-left */
+  #print-preview-section,
+  section:not(.no-print) {
+    display: block !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 210mm !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Inner viewport containers */
+  #print-preview-section > div,
+  section:not(.no-print) > div {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Neutralize any zoom scale transform from editor canvas */
+  .print-page-wrapper {
+    transform: none !important;
+    width: 210mm !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* The actual printable A4 document container */
+  #resume-preview {
+    display: block !important;
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important;
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+    min-height: 296.5mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Prevent split breaks across experience/education sections */
+  #resume-preview section,
+  #resume-preview article,
+  #resume-preview li {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}

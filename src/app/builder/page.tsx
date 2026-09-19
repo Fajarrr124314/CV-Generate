@@ -222,7 +222,7 @@ function BuilderContent() {
     <div className="min-h-screen flex flex-col bg-slate-100 text-slate-900">
       {/* Toast Notification */}
       {notification && (
-        <div className="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 text-xs animate-in fade-in slide-in-from-bottom duration-200">
+        <div className="no-print fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 text-xs animate-in fade-in slide-in-from-bottom duration-200">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{notification}</span>
         </div>
@@ -580,7 +580,10 @@ function BuilderContent() {
         </section>
 
         {/* RIGHT COLUMN: Live Preview Canvas (Desktop Split-Screen & Off-Screen on Mobile) */}
-        <section className="fixed -left-[9999px] top-0 pointer-events-none lg:static lg:flex lg:pointer-events-auto flex-1 bg-slate-200/80 flex-col h-auto lg:h-[calc(100vh-60px)] overflow-hidden">
+        <section
+          id="print-preview-section"
+          className="fixed -left-[9999px] top-0 pointer-events-none lg:static lg:flex lg:pointer-events-auto flex-1 bg-slate-200/80 flex-col h-auto lg:h-[calc(100vh-60px)] overflow-hidden"
+        >
           {/* Canvas Controls Toolbar (Zoom, Fit) */}
           <div className="no-print bg-white/80 backdrop-blur-xs border-b border-slate-200 px-6 py-2 flex items-center justify-between">
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">

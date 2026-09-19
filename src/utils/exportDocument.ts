@@ -51,5 +51,8 @@ export const exportToPDF = async (elementId: string, filename?: string) => {
 };
 
 export const printDocument = () => {
-  window.print();
+  // Allow any active UI menus or dropdowns to finish closing before opening native print dialog
+  setTimeout(() => {
+    window.print();
+  }, 100);
 };
