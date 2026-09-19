@@ -42,15 +42,33 @@ import {
 } from 'lucide-react';
 
 const TEMPLATES = [
+  // ATS Templates (4)
   { id: 'ats-classic', name: 'ATS Classic', category: 'ATS' as TemplateCategory, desc: '1 Kolom Bersih, Standar Korporat & BUMN' },
   { id: 'ats-modern', name: 'ATS Modern', category: 'ATS' as TemplateCategory, desc: 'Sans-Serif Elegan, Hierarki Tegas' },
+  { id: 'ats-minimal', name: 'ATS Minimalist', category: 'ATS' as TemplateCategory, desc: 'Format Padat Monospace, Clean & Linear' },
+  { id: 'ats-photo', name: 'ATS Formal Photo', category: 'ATS' as TemplateCategory, desc: 'Layout ATS Standar dengan Foto Formal Kiri Atas' },
+
+  // Creative Templates (15)
   { id: 'creative-sidebar', name: 'Modern Sidebar', category: 'CREATIVE' as TemplateCategory, desc: 'Dual-Column Navy, Avatar & Progress Bar' },
+  { id: 'creative-corporate-blue', name: 'Corporate Blue', category: 'CREATIVE' as TemplateCategory, desc: 'Royal Blue Sidebar, Elegan & Profesional' },
+  { id: 'creative-emerald-executive', name: 'Emerald Executive', category: 'CREATIVE' as TemplateCategory, desc: 'Solid Forest Green Header & Dual Grid' },
+  { id: 'creative-burgundy-chic', name: 'Burgundy Elegance', category: 'CREATIVE' as TemplateCategory, desc: 'Warna Wine Red Mewah, Cocok untuk Legal & Medis' },
+  { id: 'creative-charcoal-split', name: 'Charcoal Split', category: 'CREATIVE' as TemplateCategory, desc: 'Matte Slate Sidebar, Kontras Bersih & Maskulin' },
+  { id: 'creative-amber-warm', name: 'Warm Amber', category: 'CREATIVE' as TemplateCategory, desc: 'Nuansa Ochre Hangat & Cream Studio' },
+  { id: 'creative-left-rail', name: 'Slim Left Rail', category: 'CREATIVE' as TemplateCategory, desc: 'Garis Sisi Tipis Ikonik, Ruang Konten Luas' },
+  { id: 'creative-infobar', name: 'Top Infobar', category: 'CREATIVE' as TemplateCategory, desc: 'Pita Header Solid Steel Slate & Chip Kontak' },
+  { id: 'creative-modern-badge', name: 'Modern Badge Card', category: 'CREATIVE' as TemplateCategory, desc: 'Struktur Kartu Berbingkai Lembut & Tag Badge' },
+  { id: 'creative-swiss-clean', name: 'Swiss Typographic', category: 'CREATIVE' as TemplateCategory, desc: 'International Style Hitam & Merah Tegas' },
+  { id: 'creative-coral-studio', name: 'Terracotta Studio', category: 'CREATIVE' as TemplateCategory, desc: 'Aksen Clay Orange Alami untuk Creative Agency' },
+  { id: 'creative-nordic', name: 'Nordic Minimalist', category: 'CREATIVE' as TemplateCategory, desc: 'Gaya Scandinavian Bersih, Aksen Sage & Sand' },
   { id: 'creative-editorial', name: 'Editorial Luxe', category: 'CREATIVE' as TemplateCategory, desc: 'Gaya Majalah Elegan & Asimetris Eksekutif' },
   { id: 'creative-dark', name: 'Cyber Dark Tech', category: 'CREATIVE' as TemplateCategory, desc: 'Tema Dark Mode Futuristik untuk Engineer & Desainer' },
-  { id: 'creative-timeline', name: 'Dynamic Timeline', category: 'CREATIVE' as TemplateCategory, desc: 'Jejak Karir Kronologis Visual & Gradient Banner' },
-  { id: 'creative-nordic', name: 'Nordic Minimalist', category: 'CREATIVE' as TemplateCategory, desc: 'Gaya Scandinavian Bersih, Aksen Sage & Sand' },
+  { id: 'creative-timeline', name: 'Dynamic Timeline', category: 'CREATIVE' as TemplateCategory, desc: 'Jejak Karir Kronologis Visual & Node Garis' },
   { id: 'creative-grid', name: 'Minimalist Grid', category: 'CREATIVE' as TemplateCategory, desc: 'Grid Kontemporer, Aksen Teal & Emerald' },
+
+  // Cover Letter Templates (2)
   { id: 'cover-letter', name: 'Standard Letter', category: 'COVER_LETTER' as TemplateCategory, desc: 'Format Surat Resmi HRD Indonesia' },
+  { id: 'cover-letter-modern', name: 'Modern Header Letter', category: 'COVER_LETTER' as TemplateCategory, desc: 'Surat Lamaran Modern dengan Header Biru' },
 ];
 
 function BuilderContent() {

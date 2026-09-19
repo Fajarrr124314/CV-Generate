@@ -37,6 +37,7 @@ export default function HomePage() {
   const [modalZoom, setModalZoom] = useState(0.85);
 
   const templates: TemplateItem[] = [
+    // ATS Templates (4)
     {
       id: 'ats-classic',
       name: 'ATS Classic',
@@ -56,6 +57,26 @@ export default function HomePage() {
       description: 'Tipografi sans-serif kontemporer dengan hierarki tegas, mudah dibaca cepat oleh recruiter.',
     },
     {
+      id: 'ats-minimal',
+      name: 'ATS Minimalist',
+      category: 'ATS-Friendly',
+      rawCategory: 'ATS',
+      badge: 'Padat & Ringkas',
+      badgeColor: 'bg-stone-100 text-stone-700 border-stone-300',
+      description: 'Format monospace linear untuk profesional teknis dan pendaftar instansi resmi.',
+    },
+    {
+      id: 'ats-photo',
+      name: 'ATS Formal Photo',
+      category: 'ATS-Friendly',
+      rawCategory: 'ATS',
+      badge: 'BUMN & Foto Formal',
+      badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-300',
+      description: 'Tata letak ATS terstruktur dengan pas foto formal di sebelah kiri atas.',
+    },
+
+    // Creative Templates (15)
+    {
       id: 'creative-sidebar',
       name: 'Modern Sidebar',
       category: 'Creative Design',
@@ -63,6 +84,105 @@ export default function HomePage() {
       badge: 'Startup & Tech',
       badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
       description: 'Dual-column layout dengan sidebar navy, foto profil, dan progress indicator keahlian.',
+    },
+    {
+      id: 'creative-corporate-blue',
+      name: 'Corporate Blue',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Corporate & Finance',
+      badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
+      description: 'Sidebar solid royal blue yang berwibawa untuk lingkungan perbankan dan multinasional.',
+    },
+    {
+      id: 'creative-emerald-executive',
+      name: 'Emerald Executive',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Leadership & Ops',
+      badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-300',
+      description: 'Pita header forest green solid dengan kartu grid terstruktur untuk level manajerial.',
+    },
+    {
+      id: 'creative-burgundy-chic',
+      name: 'Burgundy Elegance',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Legal & Medical',
+      badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
+      description: 'Sentuhan warna wine red mewah yang sangat cocok untuk bidang hukum, medis, dan akademis.',
+    },
+    {
+      id: 'creative-charcoal-split',
+      name: 'Charcoal Split',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Modern Architecture',
+      badgeColor: 'bg-slate-100 text-slate-800 border-slate-300',
+      description: 'Sidebar slate matte gelap dengan kontras monokrom bersih yang tegas dan maskulin.',
+    },
+    {
+      id: 'creative-amber-warm',
+      name: 'Warm Amber',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Creative Studio',
+      badgeColor: 'bg-amber-50 text-amber-800 border-amber-300',
+      description: 'Perpaduan warna ochre hangat dan kanvas cream untuk desainer dan pekerja kreatif.',
+    },
+    {
+      id: 'creative-left-rail',
+      name: 'Slim Left Rail',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Minimalist Tech',
+      badgeColor: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+      description: 'Garis sisi tipis ikonik untuk kontak, memberikan ruang konten utama yang lapang.',
+    },
+    {
+      id: 'creative-infobar',
+      name: 'Top Infobar',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Professional Staff',
+      badgeColor: 'bg-slate-100 text-slate-700 border-slate-300',
+      description: 'Header solid steel slate dengan chip kontak ringkas dan tata letak 2 kolom di bawah.',
+    },
+    {
+      id: 'creative-modern-badge',
+      name: 'Modern Badge Card',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Modern Product',
+      badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+      description: 'Struktur kartu berbingkai halus dengan tag badge untuk menonjolkan pencapaian kunci.',
+    },
+    {
+      id: 'creative-swiss-clean',
+      name: 'Swiss Typographic',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Design & Media',
+      badgeColor: 'bg-red-50 text-red-700 border-red-200',
+      description: 'Gaya International Typographic hitam dan merah vermilion solid yang tajam dan berkarakter.',
+    },
+    {
+      id: 'creative-coral-studio',
+      name: 'Terracotta Studio',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Agency & Media',
+      badgeColor: 'bg-orange-50 text-orange-800 border-orange-200',
+      description: 'Warna clay orange hangat dan alami untuk branding dan industri periklanan kreatif.',
+    },
+    {
+      id: 'creative-nordic',
+      name: 'Nordic Minimalist',
+      category: 'Creative Design',
+      rawCategory: 'CREATIVE',
+      badge: 'Architect & Design',
+      badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-300',
+      description: 'Sentuhan Scandinavian bersih bernuansa sage green alami dan tipografi Swiss lapang.',
     },
     {
       id: 'creative-editorial',
@@ -89,16 +209,7 @@ export default function HomePage() {
       rawCategory: 'CREATIVE',
       badge: 'PM & Consultant',
       badgeColor: 'bg-violet-50 text-violet-700 border-violet-200',
-      description: 'Visual jejak karir kronologis dengan gradient banner dan milestone node interaktif.',
-    },
-    {
-      id: 'creative-nordic',
-      name: 'Nordic Minimalist',
-      category: 'Creative Design',
-      rawCategory: 'CREATIVE',
-      badge: 'Architect & Design',
-      badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-300',
-      description: 'Sentuhan Scandinavian bersih bernuansa sage green alami dan tipografi Swiss lapang.',
+      description: 'Visual jejak karir kronologis dengan milestone node interaktif tanpa gradasi berlebih.',
     },
     {
       id: 'creative-grid',
@@ -107,8 +218,10 @@ export default function HomePage() {
       rawCategory: 'CREATIVE',
       badge: 'Creative & Agency',
       badgeColor: 'bg-teal-50 text-teal-700 border-teal-200',
-      description: 'Header bergradasi elegan dengan tata letak grid modern untuk portofolio teknologi.',
+      description: 'Header solid teal dengan tata letak grid modern untuk portofolio teknologi.',
     },
+
+    // Cover Letter Templates (2)
     {
       id: 'cover-letter',
       name: 'Standard Cover Letter',
@@ -117,6 +230,15 @@ export default function HomePage() {
       badge: 'Resmi HRD',
       badgeColor: 'bg-purple-50 text-purple-700 border-purple-200',
       description: 'Format surat lamaran profesional dengan layout proporsional yang memikat hiring manager.',
+    },
+    {
+      id: 'cover-letter-modern',
+      name: 'Modern Header Letter',
+      category: 'Surat Lamaran',
+      rawCategory: 'COVER_LETTER',
+      badge: 'Modern & Formal',
+      badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
+      description: 'Format surat lamaran beraksen pita biru solid yang serasi dengan CV modern Anda.',
     },
   ];
 
@@ -330,7 +452,7 @@ export default function HomePage() {
               className="w-full sm:w-auto px-6 py-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-sm font-semibold rounded-xl flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
               <Eye className="w-4 h-4 text-slate-400" />
-              <span>Lihat 9 Template</span>
+              <span>Lihat 20 Template</span>
             </a>
           </div>
 

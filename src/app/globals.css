@@ -28,14 +28,28 @@ body {
   background: #94a3b8;
 }
 
-/* A4 Print Stylesheet */
+/* A4 Print Stylesheet (Locked to exact 1 Page A4) */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+
+  *, *:before, *:after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
   html, body {
-    background: #ffffff !important;
-    color: #000000 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-width: 210mm !important;
+    max-height: 297mm !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
   }
 
   .no-print {
@@ -43,27 +57,44 @@ body {
   }
 
   .print-page-wrapper {
-    position: absolute !important;
+    position: fixed !important;
     left: 0 !important;
     top: 0 !important;
     width: 210mm !important;
+    height: 297mm !important;
+    max-width: 210mm !important;
+    max-height: 297mm !important;
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
     transform: none !important;
+    overflow: hidden !important;
   }
 
   #resume-preview {
     width: 210mm !important;
-    min-height: 297mm !important;
-    box-shadow: none !important;
+    height: 297mm !important;
+    max-width: 210mm !important;
+    max-height: 297mm !important;
     margin: 0 !important;
-    padding: 20mm !important;
-    background: #ffffff !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: avoid !important;
+    break-inside: avoid !important;
   }
 
-  @page {
-    size: A4 portrait;
-    margin: 0;
+  #resume-preview > * {
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
 }
