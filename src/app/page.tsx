@@ -474,72 +474,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Advertising Banner: Jasa Pembuatan Website Portofolio (Clean & Static) */}
-      <section className="relative bg-gradient-to-r from-slate-950 via-indigo-950/80 to-slate-950 border-b border-indigo-500/25 text-white overflow-hidden py-2.5 sm:py-3 px-4 sm:px-6 z-30 shadow-[0_4px_20px_rgba(79,70,229,0.12)]">
-        {/* Top subtle highlight line */}
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent pointer-events-none" />
-
-        {/* Glow ambient background lights */}
-        <div className="absolute -top-10 left-1/4 w-80 h-24 bg-indigo-500/15 blur-3xl pointer-events-none" />
-        <div className="absolute -top-10 right-1/4 w-80 h-24 bg-cyan-500/15 blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4 relative z-10">
-          {/* Left/Main Column: Attractive Typography (No Green Pill Badge) */}
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left min-w-0">
-            {/* Styled Text Highlight instead of green pill */}
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-amber-400 text-sm">✨</span>
-              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">
-                Jasa Web Portofolio
-              </span>
-              <span className="text-slate-600 font-light hidden sm:inline">|</span>
-            </div>
-
-            {/* Headline & Value Proposition */}
-            <div className="flex flex-col xl:flex-row xl:items-center gap-1 xl:gap-2.5">
-              <p className="text-xs sm:text-sm font-semibold text-slate-100 leading-tight">
-                Mau CV Anda jadi <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-200 font-extrabold">Website Portofolio Interaktif & Siap Online</span>?
-              </p>
-              <span className="hidden xl:inline text-indigo-400/40 text-xs">✦</span>
-              <p className="text-[11px] sm:text-xs text-slate-300 hidden md:flex items-center gap-1.5">
-                <span>Desain Modern & Responsif</span>
-                <span className="text-slate-600">•</span>
-                <span>Fast Loading</span>
-                <span className="text-slate-600">•</span>
-                <span>Siap Domain Sendiri</span>
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column: Direct Contact CTA Buttons (WhatsApp & Email) */}
-          <div className="flex items-center gap-2 shrink-0 flex-wrap justify-center">
-            {/* WhatsApp CTA Button */}
-            <a
-              href="https://wa.me/62895806317711?text=Halo%20kak,%20saya%20tertarik%20dengan%20jasa%20pembuatan%20web%20portofolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3.5 py-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 active:scale-95 text-slate-950 text-xs font-bold rounded-lg shadow-md shadow-emerald-500/20 flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer whitespace-nowrap shrink-0"
-              title="Hubungi langsung via WhatsApp: 0895806317711"
-            >
-              <MessageCircle className="w-3.5 h-3.5 fill-slate-950 text-emerald-500" />
-              <span>WhatsApp: 0895806317711</span>
-              <ExternalLink className="w-3 h-3 text-slate-900" />
-            </a>
-
-            {/* Email CTA Button */}
-            <a
-              href="mailto:fajarnf77@gmail.com?subject=Tanya%20Jasa%20Pembuatan%20Web%20Portofolio"
-              className="px-3 py-1.5 bg-slate-900/90 hover:bg-slate-800 active:scale-95 text-slate-200 hover:text-white text-xs font-medium rounded-lg border border-slate-700/80 flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer whitespace-nowrap shrink-0"
-              title="Kirim email ke fajarnf77@gmail.com"
-            >
-              <Mail className="w-3.5 h-3.5 text-indigo-400" />
-              <span>fajarnf77@gmail.com</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Top Banner & Header */}
+      {/* Top Header */}
       <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -577,6 +512,76 @@ export default function HomePage() {
           </div>
         </div>
       </header>
+
+      {/* Modern Promotional Banner with Model (Positioned Below Header) */}
+      <section className="relative bg-gradient-to-r from-slate-950 via-indigo-950/70 to-slate-950 border-b border-indigo-500/20 text-white overflow-hidden py-4 sm:py-5 px-4 sm:px-6 lg:px-8 z-30 shadow-[0_4px_20px_rgba(79,70,229,0.12)]">
+        {/* Subtle background ambient lights */}
+        <div className="absolute -top-16 left-1/4 w-96 h-32 bg-indigo-500/15 blur-3xl pointer-events-none" />
+        <div className="absolute -top-16 right-1/4 w-96 h-32 bg-cyan-500/15 blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          {/* Left Text & Call to Actions */}
+          <div className="flex-1 text-center md:text-left min-w-0">
+            {/* Tagline without outdated icons */}
+            <div className="inline-flex items-center gap-2 mb-2.5">
+              <span className="text-[11px] font-bold tracking-widest uppercase text-cyan-400 bg-cyan-500/10 border border-cyan-500/25 px-2.5 py-0.5 rounded-md">
+                JASA WEB PORTOFOLIO
+              </span>
+            </div>
+
+            <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white tracking-tight leading-snug">
+              Mau CV Anda Jadi <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-200 to-violet-300">Website Portofolio Interaktif & Siap Online</span>?
+            </h2>
+
+            <p className="mt-2 text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              Tampil lebih profesional di depan HRD & klien dengan website pribadi modern, 100% responsif di semua perangkat, fast loading, dan siap pakai domain sendiri.
+            </p>
+
+            {/* Direct Contact CTA Buttons */}
+            <div className="mt-4 flex items-center gap-3 flex-wrap justify-center md:justify-start">
+              <a
+                href="https://wa.me/62895806317711?text=Halo%20kak,%20saya%20tertarik%20dengan%20jasa%20pembuatan%20web%20portofolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 active:scale-95 text-slate-950 text-xs font-bold rounded-xl shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
+                title="Hubungi langsung via WhatsApp: 0895806317711"
+              >
+                <MessageCircle className="w-4 h-4 fill-slate-950 text-emerald-500" />
+                <span>WhatsApp: 0895806317711</span>
+                <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
+              </a>
+
+              <a
+                href="mailto:fajarnf77@gmail.com?subject=Tanya%20Jasa%20Pembuatan%20Web%20Portofolio"
+                className="px-4 py-2 bg-slate-900/90 hover:bg-slate-800 active:scale-95 text-slate-200 hover:text-white text-xs font-medium rounded-xl border border-slate-700/80 flex items-center gap-2 transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
+                title="Kirim email ke fajarnf77@gmail.com"
+              >
+                <Mail className="w-4 h-4 text-indigo-400" />
+                <span>fajarnf77@gmail.com</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Visual / Model Showcase Card */}
+          <div className="relative w-full md:w-72 lg:w-96 h-44 sm:h-48 rounded-2xl overflow-hidden border border-indigo-500/30 shadow-2xl shadow-indigo-950/60 shrink-0 group">
+            <img
+              src="/web-portfolio-model.jpg"
+              alt="Model Jasa Pembuatan Website Portofolio"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+            {/* Subtle Gradient Overlay for integration */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] text-slate-200 pointer-events-none">
+              <span className="font-semibold px-2 py-0.5 rounded bg-slate-950/80 backdrop-blur-sm border border-white/10 text-white text-[10px]">
+                Interactive Web Portfolio
+              </span>
+              <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+                Siap Online
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-24 overflow-hidden">
