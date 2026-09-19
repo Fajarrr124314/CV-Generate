@@ -99,7 +99,7 @@ export const CreativeTimeline: React.FC<Props> = ({ data }) => {
             <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-900 mb-1">
               Ringkasan Karir
             </h2>
-            <p className="text-slate-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+            <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
               {personal.summary}
             </p>
           </div>
@@ -127,7 +127,7 @@ export const CreativeTimeline: React.FC<Props> = ({ data }) => {
                   </div>
                   <p className="text-indigo-700 font-semibold text-[11px] mt-0.5">{exp.company}</p>
                   {exp.description && (
-                    <p className="mt-2 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                    <p className="mt-2 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                       {exp.description}
                     </p>
                   )}
@@ -149,10 +149,10 @@ export const CreativeTimeline: React.FC<Props> = ({ data }) => {
                     <div key={edu.id} className="relative">
                       <div className="absolute -left-[22px] top-1 w-3 h-3 rounded-full bg-sky-500 ring-4 ring-sky-50" />
                       <p className="font-bold text-slate-900 text-xs">{edu.degree}</p>
-                      <p className="text-[11px] text-slate-600">{edu.fieldOfStudy}</p>
+                      <p className="text-[11px] text-slate-800">{edu.fieldOfStudy}</p>
                       <p className="text-[11px] text-sky-700 font-medium">{edu.institution}</p>
                       {(edu.startDate || edu.endDate) && (
-                        <p className="text-[10px] text-slate-400 mt-0.5">
+                        <p className="text-[10px] text-slate-600 mt-0.5">
                           {edu.startDate} – {edu.endDate}
                         </p>
                       )}

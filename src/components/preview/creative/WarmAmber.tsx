@@ -28,7 +28,7 @@ export const WarmAmber: React.FC<Props> = ({ data }) => {
               </p>
 
               {/* Contact Icons */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1.5 mt-3 text-[11px] text-stone-600">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1.5 mt-3 text-[11px] text-stone-700 font-medium">
                 {personal.email && (
                   <div className="flex items-center gap-1.5">
                     <Mail className="w-3.5 h-3.5 text-amber-700 shrink-0" />
@@ -92,7 +92,7 @@ export const WarmAmber: React.FC<Props> = ({ data }) => {
             <h2 className="text-xs font-bold uppercase tracking-wider text-amber-900 mb-1">
               Ringkasan Profesional
             </h2>
-            <p className="text-stone-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+            <p className="text-stone-800 text-justify leading-relaxed whitespace-pre-line text-xs">
               {personal.summary}
             </p>
           </section>
@@ -115,7 +115,7 @@ export const WarmAmber: React.FC<Props> = ({ data }) => {
                   </div>
                   <p className="text-amber-800 font-semibold text-xs mt-0.5">{exp.company}</p>
                   {exp.description && (
-                    <p className="mt-1.5 text-stone-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                    <p className="mt-1.5 text-stone-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                       {exp.description}
                     </p>
                   )}
@@ -135,10 +135,10 @@ export const WarmAmber: React.FC<Props> = ({ data }) => {
                   {educations.map((edu) => (
                     <div key={edu.id} className="p-2.5 bg-amber-50/50 border border-amber-200/80 rounded">
                       <p className="font-bold text-stone-900 text-xs">{edu.degree}</p>
-                      <p className="text-[11px] text-stone-600">{edu.fieldOfStudy}</p>
+                      <p className="text-[11px] text-stone-800">{edu.fieldOfStudy}</p>
                       <p className="text-[10px] text-amber-800 font-medium mt-0.5">{edu.institution}</p>
                       {(edu.startDate || edu.endDate) && (
-                        <p className="text-[10px] text-stone-400 mt-1">
+                        <p className="text-[10px] text-stone-600 mt-1">
                           {edu.startDate} – {edu.endDate}
                         </p>
                       )}

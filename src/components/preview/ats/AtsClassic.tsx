@@ -84,7 +84,7 @@ export const AtsClassic: React.FC<Props> = ({ data }) => {
                     <span className="font-bold text-gray-950 text-sm">{exp.position}</span>
                     <span className="text-gray-700 italic"> — {exp.company}</span>
                   </div>
-                  <span className="text-xs text-gray-600 font-sans shrink-0 ml-2">
+                  <span className="text-xs text-slate-700 font-medium font-sans shrink-0 ml-2">
                     {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                   </span>
                 </div>
@@ -117,7 +117,7 @@ export const AtsClassic: React.FC<Props> = ({ data }) => {
                   )}
                 </div>
                 {(edu.startDate || edu.endDate) && (
-                  <span className="text-xs text-gray-600 font-sans shrink-0 ml-2">
+                  <span className="text-xs text-slate-700 font-medium font-sans shrink-0 ml-2">
                     {edu.startDate} – {edu.endDate}
                   </span>
                 )}

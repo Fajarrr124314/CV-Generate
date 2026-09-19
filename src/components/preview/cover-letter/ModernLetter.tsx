@@ -47,16 +47,16 @@ export const ModernLetter: React.FC<Props> = ({ data }) => {
           {/* Date & Recipient */}
           <div className="flex justify-between items-start text-xs">
             <div className="space-y-1">
-              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
+              <span className="text-[10px] uppercase font-bold text-slate-600 block tracking-wider">
                 Ditujukan Kepada:
               </span>
               <p className="font-bold text-slate-900 text-sm">{letter.recipientName || 'Hiring Team'}</p>
-              {letter.recipientTitle && <p className="text-slate-600">{letter.recipientTitle}</p>}
+              {letter.recipientTitle && <p className="text-slate-700">{letter.recipientTitle}</p>}
               {letter.companyName && <p className="font-semibold text-slate-800">{letter.companyName}</p>}
-              {letter.companyAddress && <p className="text-slate-500">{letter.companyAddress}</p>}
+              {letter.companyAddress && <p className="text-slate-700">{letter.companyAddress}</p>}
             </div>
 
-            <div className="text-slate-500 font-medium text-xs">
+            <div className="text-slate-700 font-medium text-xs">
               {letter.date}
             </div>
           </div>
@@ -69,9 +69,9 @@ export const ModernLetter: React.FC<Props> = ({ data }) => {
           )}
 
           {/* Body Content */}
-          <div className="text-slate-700 whitespace-pre-line leading-relaxed text-justify space-y-3 pt-2">
+          <div className="text-slate-800 whitespace-pre-line leading-relaxed text-justify space-y-3 pt-2">
             {letter.letterBody || (
-              <p className="text-slate-400 italic">
+              <p className="text-slate-500 italic">
                 Tuliskan isi surat lamaran kerja Anda di panel editor...
               </p>
             )}
@@ -81,16 +81,16 @@ export const ModernLetter: React.FC<Props> = ({ data }) => {
 
       {/* Sign-off */}
       <div className="p-10 pt-0">
-        <p className="text-xs text-slate-600">Hormat saya,</p>
+        <p className="text-xs text-slate-700 font-medium">Hormat saya,</p>
         <div className="h-12 flex items-end">
-          <p className="font-serif italic text-base text-slate-500">
+          <p className="font-serif italic text-base text-slate-700">
             {personal.fullName || 'Tanda Tangan'}
           </p>
         </div>
         <p className="font-bold text-slate-900 text-xs mt-1">
           {personal.fullName || 'Nama Lengkap'}
         </p>
-        <p className="text-[10px] text-slate-500">
+        <p className="text-[10px] text-slate-600 font-medium">
           {personal.jobTitle || 'Pelamar'}
         </p>
       </div>

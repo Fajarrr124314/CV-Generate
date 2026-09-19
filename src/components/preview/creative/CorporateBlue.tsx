@@ -146,7 +146,7 @@ export const CorporateBlue: React.FC<Props> = ({ data }) => {
                 <span className="w-2 h-2 bg-[#1e3a8a] rounded-xs inline-block" />
                 Ringkasan Eksekutif
               </h2>
-              <p className="text-slate-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+              <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
                 {personal.summary}
               </p>
             </section>
@@ -168,9 +168,9 @@ export const CorporateBlue: React.FC<Props> = ({ data }) => {
                         {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                       </span>
                     </div>
-                    <p className="text-slate-700 font-medium text-xs mt-0.5">{exp.company}</p>
+                    <p className="text-slate-800 font-semibold text-xs mt-0.5">{exp.company}</p>
                     {exp.description && (
-                      <p className="mt-1.5 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-1.5 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}

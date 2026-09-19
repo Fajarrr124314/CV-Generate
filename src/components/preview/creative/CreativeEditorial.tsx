@@ -26,7 +26,7 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
               <h1 className="text-3xl sm:text-4xl font-normal tracking-tight text-stone-950 capitalize">
                 {personal.fullName || 'Nama Lengkap'}
               </h1>
-              <p className="text-sm italic text-stone-600 mt-1 font-serif">
+              <p className="text-sm italic text-stone-700 font-medium mt-1 font-serif">
                 {personal.jobTitle || 'Executive & Strategic Leader'}
               </p>
             </div>
@@ -56,7 +56,7 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
           </div>
 
           {/* Contact Bar */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mt-4 pt-3 border-t border-stone-300/80 text-[11px] font-sans text-stone-600">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mt-4 pt-3 border-t border-stone-300/80 text-[11px] font-sans text-stone-700 font-medium">
             {personal.email && (
               <div className="flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-amber-800 shrink-0" />
@@ -106,7 +106,7 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
                 <h2 className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-stone-900 border-b border-stone-800 pb-1 mb-2">
                   Executive Brief
                 </h2>
-                <blockquote className="italic text-stone-700 text-justify text-[11px] leading-relaxed border-l-2 border-amber-700 pl-3">
+                <blockquote className="italic text-stone-800 text-justify text-[11px] leading-relaxed border-l-2 border-amber-700 pl-3">
                   &ldquo;{personal.summary}&rdquo;
                 </blockquote>
               </div>
@@ -122,12 +122,12 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
                   {educations.map((edu) => (
                     <div key={edu.id}>
                       <p className="font-bold text-stone-900 text-xs">{edu.degree}</p>
-                      <p className="text-[11px] text-stone-600 italic font-serif">{edu.fieldOfStudy}</p>
+                      <p className="text-[11px] text-stone-800 italic font-serif">{edu.fieldOfStudy}</p>
                       <p className="text-[10px] text-amber-800 font-medium uppercase tracking-wider mt-0.5">
                         {edu.institution}
                       </p>
                       {(edu.startDate || edu.endDate) && (
-                        <p className="text-[10px] text-stone-400">
+                        <p className="text-[10px] text-stone-600">
                           {edu.startDate} – {edu.endDate}
                         </p>
                       )}
@@ -147,7 +147,7 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
                   {skills.map((s) => (
                     <div key={s.id} className="flex justify-between items-baseline border-b border-stone-200 pb-1">
                       <span className="text-[11px] font-medium text-stone-800">{s.name}</span>
-                      <span className="text-[10px] text-stone-500 italic">{s.level}</span>
+                      <span className="text-[10px] text-stone-700 italic font-medium">{s.level}</span>
                     </div>
                   ))}
                 </div>
@@ -160,7 +160,7 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
             <div>
               <h2 className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-stone-900 border-b border-stone-800 pb-1 mb-4 flex items-center justify-between">
                 <span>Career History</span>
-                <span className="text-[9px] font-normal text-stone-500 lowercase italic">chronological</span>
+                <span className="text-[9px] font-normal text-stone-700 lowercase italic">chronological</span>
               </h2>
 
               <div className="space-y-5">
@@ -170,7 +170,7 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
                       <h3 className="font-bold text-stone-950 text-xs font-sans">
                         {exp.position}
                       </h3>
-                      <span className="text-[10px] font-sans text-stone-500 italic">
+                      <span className="text-[10px] font-sans text-stone-700 italic font-medium">
                         {exp.startDate} – {exp.isCurrent ? 'Present' : exp.endDate}
                       </span>
                     </div>
@@ -178,7 +178,7 @@ export const CreativeEditorial: React.FC<Props> = ({ data }) => {
                       {exp.company}
                     </p>
                     {exp.description && (
-                      <p className="mt-2 text-stone-700 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-2 text-stone-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}

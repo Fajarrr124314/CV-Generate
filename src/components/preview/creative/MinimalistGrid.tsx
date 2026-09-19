@@ -105,7 +105,7 @@ export const MinimalistGrid: React.FC<Props> = ({ data }) => {
           <section className="col-span-8 space-y-4">
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 pb-1 border-b-2 border-emerald-600 flex items-center justify-between">
               <span>Pengalaman Kerja</span>
-              <span className="text-[10px] text-slate-500 font-normal lowercase">karir & dampak</span>
+              <span className="text-[10px] text-slate-700 font-medium lowercase">karir & dampak</span>
             </h2>
 
             <div className="space-y-4">
@@ -124,7 +124,7 @@ export const MinimalistGrid: React.FC<Props> = ({ data }) => {
                     </span>
                   </div>
                   {exp.description && (
-                    <p className="mt-2 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                    <p className="mt-2 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                       {exp.description}
                     </p>
                   )}
@@ -145,10 +145,10 @@ export const MinimalistGrid: React.FC<Props> = ({ data }) => {
                   {educations.map((edu) => (
                     <div key={edu.id} className="p-3 bg-slate-50 border border-slate-200 rounded-lg">
                       <p className="font-bold text-slate-900 text-xs">{edu.degree}</p>
-                      <p className="text-[11px] text-slate-600">{edu.fieldOfStudy}</p>
+                      <p className="text-[11px] text-slate-800">{edu.fieldOfStudy}</p>
                       <p className="text-[11px] text-emerald-700 font-medium">{edu.institution}</p>
                       {(edu.startDate || edu.endDate) && (
-                        <p className="text-[10px] text-slate-500 mt-1">
+                        <p className="text-[10px] text-slate-700 font-medium mt-1">
                           {edu.startDate} – {edu.endDate}
                         </p>
                       )}

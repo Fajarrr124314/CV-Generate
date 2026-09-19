@@ -46,34 +46,34 @@ export const AtsPhoto: React.FC<Props> = ({ data }) => {
               {personal.jobTitle || 'Posisi / Role Profesional'}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 mt-3 text-xs text-slate-600">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 mt-3 text-xs text-slate-700">
               {personal.email && (
                 <div className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span className="font-medium text-slate-800">{personal.email}</span>
+                  <Mail className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+                  <span className="font-semibold text-slate-900">{personal.email}</span>
                 </div>
               )}
               {personal.phone && (
                 <div className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <Phone className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                   <span>{personal.phone}</span>
                 </div>
               )}
               {personal.address && (
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                   <span>{personal.address}</span>
                 </div>
               )}
               {personal.linkedin && (
                 <div className="flex items-center gap-1.5">
-                  <LinkedinIcon className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <LinkedinIcon className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                   <span className="truncate">{personal.linkedin}</span>
                 </div>
               )}
               {personal.github && (
                 <div className="flex items-center gap-1.5">
-                  <GithubIcon className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <GithubIcon className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                   <span className="truncate">{personal.github}</span>
                 </div>
               )}
@@ -87,7 +87,7 @@ export const AtsPhoto: React.FC<Props> = ({ data }) => {
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2">
               Profil Profesional
             </h2>
-            <p className="text-slate-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+            <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
               {personal.summary}
             </p>
           </section>
@@ -105,14 +105,14 @@ export const AtsPhoto: React.FC<Props> = ({ data }) => {
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="font-bold text-slate-950 text-xs">{exp.position}</h3>
-                      <p className="text-slate-700 font-medium text-xs">{exp.company}</p>
+                      <p className="text-slate-800 font-medium text-xs">{exp.company}</p>
                     </div>
-                    <span className="text-[11px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded shrink-0">
+                    <span className="text-[11px] font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded shrink-0">
                       {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                     </span>
                   </div>
                   {exp.description && (
-                    <p className="mt-1.5 text-slate-700 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                    <p className="mt-1.5 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                       {exp.description}
                     </p>
                   )}
@@ -133,12 +133,12 @@ export const AtsPhoto: React.FC<Props> = ({ data }) => {
                 <div key={edu.id} className="flex justify-between items-start">
                   <div>
                     <h3 className="font-bold text-slate-900 text-xs">{edu.institution}</h3>
-                    <p className="text-slate-600 text-xs">
+                    <p className="text-slate-800 text-xs">
                       {edu.degree} {edu.fieldOfStudy ? `• ${edu.fieldOfStudy}` : ''}
                     </p>
                   </div>
                   {(edu.startDate || edu.endDate) && (
-                    <span className="text-[11px] text-slate-500 font-medium shrink-0">
+                    <span className="text-[11px] text-slate-700 font-medium shrink-0">
                       {edu.startDate} – {edu.endDate}
                     </span>
                   )}
@@ -161,7 +161,7 @@ export const AtsPhoto: React.FC<Props> = ({ data }) => {
                   className="inline-flex items-center text-xs px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-800 rounded font-medium"
                 >
                   {s.name}
-                  {s.level && <span className="ml-1 text-[10px] text-slate-500">({s.level})</span>}
+                  {s.level && <span className="ml-1 text-[10px] text-slate-600">({s.level})</span>}
                 </span>
               ))}
             </div>

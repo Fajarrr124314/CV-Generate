@@ -94,7 +94,7 @@ export const CreativeNordic: React.FC<Props> = ({ data }) => {
         {/* Profile Intro */}
         {personal.summary && (
           <div className="mt-6 py-4 px-5 bg-[#f4f7f4] border-l-3 border-[#3d6355] rounded-r-lg">
-            <p className="text-[#3a5249] text-justify leading-relaxed text-xs">
+            <p className="text-[#1a2e26] text-justify leading-relaxed text-xs">
               {personal.summary}
             </p>
           </div>
@@ -113,13 +113,13 @@ export const CreativeNordic: React.FC<Props> = ({ data }) => {
                 <div key={exp.id}>
                   <div className="flex justify-between items-baseline gap-2">
                     <h3 className="font-semibold text-[#1a2d26] text-xs">{exp.position}</h3>
-                    <span className="text-[10px] text-[#6b857c] font-light">
+                    <span className="text-[10px] text-[#3d5a50] font-medium">
                       {exp.startDate} – {exp.isCurrent ? 'Saat ini' : exp.endDate}
                     </span>
                   </div>
-                  <p className="text-[#3d6355] font-medium text-[11px] mt-0.5">{exp.company}</p>
+                  <p className="text-[#2b4c3f] font-semibold text-[11px] mt-0.5">{exp.company}</p>
                   {exp.description && (
-                    <p className="mt-1.5 text-[#445b53] text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                    <p className="mt-1.5 text-[#1f332c] text-justify whitespace-pre-line leading-relaxed text-[11px]">
                       {exp.description}
                     </p>
                   )}
@@ -140,10 +140,10 @@ export const CreativeNordic: React.FC<Props> = ({ data }) => {
                   {educations.map((edu) => (
                     <div key={edu.id} className="p-3 bg-[#f7f9f7] rounded-lg border border-[#e5ece5]">
                       <p className="font-semibold text-[#1a2d26] text-xs">{edu.degree}</p>
-                      <p className="text-[11px] text-[#4d665d]">{edu.fieldOfStudy}</p>
-                      <p className="text-[10px] text-[#3d6355] mt-0.5 font-medium">{edu.institution}</p>
+                      <p className="text-[11px] text-[#23352f]">{edu.fieldOfStudy}</p>
+                      <p className="text-[10px] text-[#2b4c3f] mt-0.5 font-semibold">{edu.institution}</p>
                       {(edu.startDate || edu.endDate) && (
-                        <p className="text-[10px] text-[#7d968e] mt-1">
+                        <p className="text-[10px] text-[#4a635a] mt-1 font-medium">
                           {edu.startDate} – {edu.endDate}
                         </p>
                       )}

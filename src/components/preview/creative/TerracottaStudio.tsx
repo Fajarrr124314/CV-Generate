@@ -100,7 +100,7 @@ export const TerracottaStudio: React.FC<Props> = ({ data }) => {
               <h2 className="text-xs font-bold uppercase tracking-wider text-[#9a3412] mb-1">
                 Tentang Saya
               </h2>
-              <p className="text-stone-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+              <p className="text-stone-800 text-justify leading-relaxed whitespace-pre-line text-xs">
                 {personal.summary}
               </p>
             </section>
@@ -123,7 +123,7 @@ export const TerracottaStudio: React.FC<Props> = ({ data }) => {
                     </div>
                     <p className="text-[#9a3412] font-semibold text-xs mt-0.5">{exp.company}</p>
                     {exp.description && (
-                      <p className="mt-1.5 text-stone-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-1.5 text-stone-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}
@@ -143,10 +143,10 @@ export const TerracottaStudio: React.FC<Props> = ({ data }) => {
                     {educations.map((edu) => (
                       <div key={edu.id} className="p-2.5 bg-orange-50/60 border border-orange-200/80 rounded">
                         <p className="font-bold text-stone-900 text-xs">{edu.degree}</p>
-                        <p className="text-[11px] text-stone-600">{edu.fieldOfStudy}</p>
+                        <p className="text-[11px] text-stone-800">{edu.fieldOfStudy}</p>
                         <p className="text-[10px] text-[#9a3412] font-medium mt-0.5">{edu.institution}</p>
                         {(edu.startDate || edu.endDate) && (
-                          <p className="text-[10px] text-stone-400 mt-1">
+                          <p className="text-[10px] text-stone-600 mt-1">
                             {edu.startDate} – {edu.endDate}
                           </p>
                         )}

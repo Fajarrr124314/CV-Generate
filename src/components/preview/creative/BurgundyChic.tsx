@@ -134,7 +134,7 @@ export const BurgundyChic: React.FC<Props> = ({ data }) => {
             <h1 className="text-3xl font-extrabold text-[#881337] tracking-tight">
               {personal.fullName || 'Nama Lengkap'}
             </h1>
-            <p className="text-sm font-semibold text-slate-700 mt-1 uppercase tracking-wide">
+            <p className="text-sm font-semibold text-slate-800 mt-1 uppercase tracking-wide">
               {personal.jobTitle || 'Posisi / Role Profesional'}
             </p>
           </div>
@@ -146,7 +146,7 @@ export const BurgundyChic: React.FC<Props> = ({ data }) => {
                 <span className="w-2 h-2 bg-[#881337] rounded-xs inline-block" />
                 Profil Singkat
               </h2>
-              <p className="text-slate-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+              <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
                 {personal.summary}
               </p>
             </section>
@@ -170,7 +170,7 @@ export const BurgundyChic: React.FC<Props> = ({ data }) => {
                     </div>
                     <p className="text-[#881337] font-semibold text-xs mt-0.5">{exp.company}</p>
                     {exp.description && (
-                      <p className="mt-1.5 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-1.5 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}

@@ -114,13 +114,13 @@ export const TopInfobar: React.FC<Props> = ({ data }) => {
                   <div key={exp.id} className="pb-3 border-b border-slate-100 last:border-0">
                     <div className="flex justify-between items-baseline gap-2">
                       <h3 className="font-bold text-slate-900 text-xs">{exp.position}</h3>
-                      <span className="text-[10px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                      <span className="text-[10px] font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
                         {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                       </span>
                     </div>
-                    <p className="text-slate-800 font-medium text-xs mt-0.5">{exp.company}</p>
+                    <p className="text-slate-800 font-semibold text-xs mt-0.5">{exp.company}</p>
                     {exp.description && (
-                      <p className="mt-1.5 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-1.5 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}
@@ -140,10 +140,10 @@ export const TopInfobar: React.FC<Props> = ({ data }) => {
                     {educations.map((edu) => (
                       <div key={edu.id} className="p-2.5 bg-slate-50 border border-slate-200 rounded">
                         <p className="font-bold text-slate-900 text-xs">{edu.degree}</p>
-                        <p className="text-[11px] text-slate-600">{edu.fieldOfStudy}</p>
+                        <p className="text-[11px] text-slate-800">{edu.fieldOfStudy}</p>
                         <p className="text-[10px] text-slate-700 font-medium mt-0.5">{edu.institution}</p>
                         {(edu.startDate || edu.endDate) && (
-                          <p className="text-[10px] text-slate-400 mt-1">
+                          <p className="text-[10px] text-slate-600 mt-1">
                             {edu.startDate} – {edu.endDate}
                           </p>
                         )}

@@ -134,7 +134,7 @@ export const CharcoalSplit: React.FC<Props> = ({ data }) => {
             <h1 className="text-3xl font-extrabold text-slate-950 tracking-tight">
               {personal.fullName || 'Nama Lengkap'}
             </h1>
-            <p className="text-sm font-semibold text-slate-600 mt-1 uppercase tracking-wider">
+            <p className="text-sm font-semibold text-slate-700 mt-1 uppercase tracking-wider">
               {personal.jobTitle || 'Posisi / Role Profesional'}
             </p>
           </div>
@@ -145,7 +145,7 @@ export const CharcoalSplit: React.FC<Props> = ({ data }) => {
               <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 mb-2">
                 Ringkasan Profesional
               </h2>
-              <p className="text-slate-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+              <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
                 {personal.summary}
               </p>
             </section>
@@ -162,13 +162,13 @@ export const CharcoalSplit: React.FC<Props> = ({ data }) => {
                   <div key={exp.id} className="pb-3 border-b border-slate-200 last:border-0">
                     <div className="flex justify-between items-baseline flex-wrap gap-1">
                       <h3 className="font-bold text-slate-950 text-xs">{exp.position}</h3>
-                      <span className="text-[10px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                      <span className="text-[10px] font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
                         {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                       </span>
                     </div>
-                    <p className="text-slate-800 font-medium text-xs mt-0.5">{exp.company}</p>
+                    <p className="text-slate-800 font-semibold text-xs mt-0.5">{exp.company}</p>
                     {exp.description && (
-                      <p className="mt-1.5 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-1.5 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}

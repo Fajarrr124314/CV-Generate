@@ -112,7 +112,7 @@ export const SwissTypographic: React.FC<Props> = ({ data }) => {
                 <div key={exp.id}>
                   <div className="flex justify-between items-baseline gap-2">
                     <h3 className="font-bold text-black text-xs uppercase">{exp.position}</h3>
-                    <span className="text-[10px] font-mono text-neutral-600 font-bold">
+                    <span className="text-[10px] font-mono text-neutral-700 font-bold">
                       {exp.startDate} — {exp.isCurrent ? 'Sekarang' : exp.endDate}
                     </span>
                   </div>
@@ -141,10 +141,10 @@ export const SwissTypographic: React.FC<Props> = ({ data }) => {
                   {educations.map((edu) => (
                     <div key={edu.id}>
                       <p className="font-bold text-black text-xs">{edu.degree}</p>
-                      <p className="text-[11px] text-neutral-600">{edu.fieldOfStudy}</p>
+                      <p className="text-[11px] text-neutral-700">{edu.fieldOfStudy}</p>
                       <p className="text-[10px] text-[#dc2626] font-bold mt-0.5">{edu.institution}</p>
                       {(edu.startDate || edu.endDate) && (
-                        <p className="text-[10px] font-mono text-neutral-400 mt-0.5">
+                        <p className="text-[10px] font-mono text-neutral-600 mt-0.5">
                           {edu.startDate} – {edu.endDate}
                         </p>
                       )}
@@ -164,7 +164,7 @@ export const SwissTypographic: React.FC<Props> = ({ data }) => {
                   {skills.map((s) => (
                     <div key={s.id} className="flex justify-between items-baseline border-b border-neutral-200 pb-1 text-[11px]">
                       <span className="font-medium text-black">{s.name}</span>
-                      <span className="text-[10px] text-neutral-500 font-mono">{s.level}</span>
+                      <span className="text-[10px] text-neutral-700 font-mono font-medium">{s.level}</span>
                     </div>
                   ))}
                 </div>

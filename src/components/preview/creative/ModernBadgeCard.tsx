@@ -39,14 +39,14 @@ export const ModernBadgeCard: React.FC<Props> = ({ data }) => {
               <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 {personal.fullName || 'Nama Lengkap'}
               </h1>
-              <p className="text-sm font-semibold text-slate-600 mt-0.5">
+              <p className="text-sm font-semibold text-slate-700 mt-0.5">
                 {personal.jobTitle || 'Posisi / Role Profesional'}
               </p>
             </div>
           </div>
 
           {/* Contact Details */}
-          <div className="text-right text-[11px] text-slate-600 space-y-1 shrink-0">
+          <div className="text-right text-[11px] text-slate-700 font-medium space-y-1 shrink-0">
             {personal.email && (
               <div className="flex items-center sm:justify-end gap-1.5">
                 <span>{personal.email}</span>
@@ -69,7 +69,7 @@ export const ModernBadgeCard: React.FC<Props> = ({ data }) => {
         </header>
 
         {/* Links row */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-600 px-2">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-700 px-2 font-medium">
           {personal.linkedin && (
             <span className="flex items-center gap-1 font-medium">
               <LinkedinIcon className="w-3 h-3 text-indigo-600" /> {personal.linkedin}
@@ -94,7 +94,7 @@ export const ModernBadgeCard: React.FC<Props> = ({ data }) => {
               <span className="w-2 h-2 rounded-full bg-indigo-600" />
               Tentang Profesional
             </h2>
-            <p className="text-slate-600 text-justify leading-relaxed whitespace-pre-line text-xs">
+            <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
               {personal.summary}
             </p>
           </section>
@@ -120,7 +120,7 @@ export const ModernBadgeCard: React.FC<Props> = ({ data }) => {
                   </div>
                   <p className="text-indigo-700 font-semibold text-xs mt-0.5">{exp.company}</p>
                   {exp.description && (
-                    <p className="mt-1.5 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                    <p className="mt-1.5 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                       {exp.description}
                     </p>
                   )}
@@ -142,10 +142,10 @@ export const ModernBadgeCard: React.FC<Props> = ({ data }) => {
                   {educations.map((edu) => (
                     <div key={edu.id} className="bg-white border border-slate-200 rounded-xl p-3 shadow-xs">
                       <p className="font-bold text-slate-900 text-xs">{edu.degree}</p>
-                      <p className="text-[11px] text-slate-600">{edu.fieldOfStudy}</p>
+                      <p className="text-[11px] text-slate-800">{edu.fieldOfStudy}</p>
                       <p className="text-[10px] text-indigo-700 font-medium mt-0.5">{edu.institution}</p>
                       {(edu.startDate || edu.endDate) && (
-                        <p className="text-[10px] text-slate-400 mt-1">
+                        <p className="text-[10px] text-slate-600 mt-1">
                           {edu.startDate} – {edu.endDate}
                         </p>
                       )}

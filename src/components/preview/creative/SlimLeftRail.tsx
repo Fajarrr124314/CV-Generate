@@ -54,7 +54,7 @@ export const SlimLeftRail: React.FC<Props> = ({ data }) => {
             </div>
 
             {/* Contact Row */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 text-[11px] text-slate-600">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 text-[11px] text-slate-700 font-medium">
               {personal.email && <span>{personal.email}</span>}
               {personal.phone && <span>• {personal.phone}</span>}
               {personal.address && <span>• {personal.address}</span>}
@@ -83,7 +83,7 @@ export const SlimLeftRail: React.FC<Props> = ({ data }) => {
                 <span className="w-2 h-2 bg-[#312e81] rounded-full inline-block" />
                 Profil Profesional
               </h2>
-              <p className="text-slate-700 text-justify leading-relaxed whitespace-pre-line text-xs">
+              <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
                 {personal.summary}
               </p>
             </section>
@@ -105,9 +105,9 @@ export const SlimLeftRail: React.FC<Props> = ({ data }) => {
                         {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                       </span>
                     </div>
-                    <p className="text-slate-700 font-medium text-xs mt-0.5">{exp.company}</p>
+                    <p className="text-slate-800 font-semibold text-xs mt-0.5">{exp.company}</p>
                     {exp.description && (
-                      <p className="mt-1.5 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-1.5 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}
@@ -128,10 +128,10 @@ export const SlimLeftRail: React.FC<Props> = ({ data }) => {
                     {educations.map((edu) => (
                       <div key={edu.id} className="p-2.5 bg-slate-50 border border-slate-200 rounded">
                         <p className="font-bold text-slate-900 text-xs">{edu.degree}</p>
-                        <p className="text-[11px] text-slate-600">{edu.fieldOfStudy}</p>
+                        <p className="text-[11px] text-slate-800">{edu.fieldOfStudy}</p>
                         <p className="text-[10px] text-indigo-800 font-medium mt-0.5">{edu.institution}</p>
                         {(edu.startDate || edu.endDate) && (
-                          <p className="text-[10px] text-slate-400 mt-1">
+                          <p className="text-[10px] text-slate-600 mt-1">
                             {edu.startDate} – {edu.endDate}
                           </p>
                         )}

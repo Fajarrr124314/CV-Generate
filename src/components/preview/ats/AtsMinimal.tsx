@@ -18,11 +18,11 @@ export const AtsMinimal: React.FC<Props> = ({ data }) => {
               <h1 className="text-2xl font-bold tracking-tight text-neutral-950 uppercase">
                 {personal.fullName || 'Nama Lengkap'}
               </h1>
-              <p className="text-xs font-semibold text-neutral-600 mt-0.5 uppercase tracking-wider">
+              <p className="text-xs font-semibold text-neutral-700 mt-0.5 uppercase tracking-wider">
                 {personal.jobTitle || 'Posisi / Role Profesional'}
               </p>
             </div>
-            <div className="text-right text-[11px] text-neutral-600 space-y-0.5 font-mono">
+            <div className="text-right text-[11px] text-neutral-700 space-y-0.5 font-mono font-medium">
               {personal.phone && <div>{personal.phone}</div>}
               {personal.email && <div>{personal.email}</div>}
               {personal.address && <div>{personal.address}</div>}
@@ -30,7 +30,7 @@ export const AtsMinimal: React.FC<Props> = ({ data }) => {
           </div>
 
           {/* Links line */}
-          <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 text-[11px] text-neutral-500 font-mono">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 text-[11px] text-neutral-700 font-mono font-medium">
             {personal.linkedin && <span>in/{personal.linkedin.replace(/https?:\/\/(www\.)?linkedin\.com\/in\/?/, '')}</span>}
             {personal.github && <span>git/{personal.github.replace(/https?:\/\/(www\.)?github\.com\/?/, '')}</span>}
             {personal.website && <span>{personal.website.replace(/https?:\/\/(www\.)?/, '')}</span>}
@@ -60,11 +60,11 @@ export const AtsMinimal: React.FC<Props> = ({ data }) => {
                 <div key={exp.id}>
                   <div className="flex justify-between items-baseline">
                     <span className="font-bold text-neutral-950 text-xs">{exp.position}</span>
-                    <span className="text-[10px] text-neutral-500 font-mono">
+                    <span className="text-[10px] text-neutral-700 font-mono font-medium">
                       {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                     </span>
                   </div>
-                  <div className="text-[11px] font-medium text-neutral-700 italic">
+                  <div className="text-[11px] font-semibold text-neutral-800 italic">
                     {exp.company}
                   </div>
                   {exp.description && (
@@ -89,10 +89,10 @@ export const AtsMinimal: React.FC<Props> = ({ data }) => {
                 <div key={edu.id} className="flex justify-between items-baseline">
                   <div>
                     <span className="font-bold text-neutral-950 text-xs">{edu.institution}</span>
-                    <span className="text-neutral-700 text-xs"> — {edu.degree} {edu.fieldOfStudy ? `(${edu.fieldOfStudy})` : ''}</span>
+                    <span className="text-neutral-800 text-xs"> — {edu.degree} {edu.fieldOfStudy ? `(${edu.fieldOfStudy})` : ''}</span>
                   </div>
                   {(edu.startDate || edu.endDate) && (
-                    <span className="text-[10px] text-neutral-500 font-mono">
+                    <span className="text-[10px] text-neutral-700 font-mono font-medium">
                       {edu.startDate} – {edu.endDate}
                     </span>
                   )}
@@ -111,8 +111,8 @@ export const AtsMinimal: React.FC<Props> = ({ data }) => {
             <div className="text-neutral-800 text-xs leading-relaxed">
               {skills.map((s, idx) => (
                 <span key={s.id}>
-                  <span className="font-semibold text-neutral-900">{s.name}</span>
-                  {s.level && <span className="text-neutral-500 text-[11px]"> ({s.level})</span>}
+                  <span className="font-semibold text-neutral-950">{s.name}</span>
+                  {s.level && <span className="text-neutral-600 text-[11px]"> ({s.level})</span>}
                   {idx < skills.length - 1 ? ' • ' : ''}
                 </span>
               ))}

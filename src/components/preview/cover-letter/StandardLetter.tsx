@@ -35,8 +35,8 @@ export const StandardLetter: React.FC<Props> = ({ data }) => {
             </p>
           </div>
 
-          <div className="text-right text-xs text-slate-600 space-y-0.5">
-            {personal.email && <p className="font-medium text-slate-800">{personal.email}</p>}
+          <div className="text-right text-xs text-slate-700 font-medium space-y-0.5">
+            {personal.email && <p className="font-semibold text-slate-900">{personal.email}</p>}
             {personal.phone && <p>{personal.phone}</p>}
             {personal.address && <p>{personal.address}</p>}
           </div>
@@ -52,7 +52,7 @@ export const StandardLetter: React.FC<Props> = ({ data }) => {
           {letter.recipientName && <p className="font-bold text-slate-950 text-sm">{letter.recipientName}</p>}
           {letter.recipientTitle && <p className="text-slate-700">{letter.recipientTitle}</p>}
           {letter.companyName && <p className="font-semibold text-slate-900">{letter.companyName}</p>}
-          {letter.companyAddress && <p className="text-slate-600">{letter.companyAddress}</p>}
+          {letter.companyAddress && <p className="text-slate-700">{letter.companyAddress}</p>}
         </div>
 
         {/* Subject */}
@@ -65,7 +65,7 @@ export const StandardLetter: React.FC<Props> = ({ data }) => {
         {/* Letter Body */}
         <div className="mt-6 text-slate-800 whitespace-pre-line leading-relaxed text-justify space-y-3">
           {letter.letterBody || (
-            <p className="text-slate-400 italic">
+            <p className="text-slate-500 italic">
               Tuliskan isi surat lamaran kerja Anda di panel editor sebelah kiri...
             </p>
           )}
@@ -74,9 +74,9 @@ export const StandardLetter: React.FC<Props> = ({ data }) => {
 
       {/* Sign-off */}
       <div className="pt-10">
-        <p className="text-xs text-slate-700">Hormat saya,</p>
+        <p className="text-xs text-slate-700 font-medium">Hormat saya,</p>
         <div className="h-14 flex items-end">
-          <p className="font-serif italic text-lg text-slate-500">
+          <p className="font-serif italic text-lg text-slate-700">
             {personal.fullName || 'Tanda Tangan'}
           </p>
         </div>

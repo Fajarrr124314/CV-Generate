@@ -106,10 +106,10 @@ export const ModernSidebar: React.FC<Props> = ({ data }) => {
                 {educations.map((edu) => (
                   <div key={edu.id}>
                     <p className="font-semibold text-white text-xs">{edu.degree}</p>
-                    <p className="text-[11px] text-slate-400">{edu.fieldOfStudy}</p>
+                    <p className="text-[11px] text-slate-200">{edu.fieldOfStudy}</p>
                     <p className="text-[11px] text-indigo-300">{edu.institution}</p>
                     {(edu.startDate || edu.endDate) && (
-                      <p className="text-[10px] text-slate-500 mt-0.5">
+                      <p className="text-[10px] text-slate-400 mt-0.5">
                         {edu.startDate} – {edu.endDate}
                       </p>
                     )}
@@ -166,7 +166,7 @@ export const ModernSidebar: React.FC<Props> = ({ data }) => {
                 <span className="w-2.5 h-2.5 rounded-sm bg-indigo-600 inline-block" />
                 Tentang Saya
               </h2>
-              <p className="text-slate-600 text-justify leading-relaxed whitespace-pre-line text-xs">
+              <p className="text-slate-800 text-justify leading-relaxed whitespace-pre-line text-xs">
                 {personal.summary}
               </p>
             </div>
@@ -190,9 +190,9 @@ export const ModernSidebar: React.FC<Props> = ({ data }) => {
                         {exp.startDate} – {exp.isCurrent ? 'Sekarang' : exp.endDate}
                       </span>
                     </div>
-                    <p className="text-slate-700 font-medium text-xs mt-0.5">{exp.company}</p>
+                    <p className="text-slate-800 font-semibold text-xs mt-0.5">{exp.company}</p>
                     {exp.description && (
-                      <p className="mt-2 text-slate-600 text-justify whitespace-pre-line leading-relaxed text-[11px]">
+                      <p className="mt-2 text-slate-800 text-justify whitespace-pre-line leading-relaxed text-[11px]">
                         {exp.description}
                       </p>
                     )}
