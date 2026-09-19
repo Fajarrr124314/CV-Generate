@@ -15,12 +15,12 @@ export const WarmAmber: React.FC<Props> = ({ data }) => {
       <div>
         {/* Amber Header */}
         <header className="pb-6 border-b-2 border-amber-600">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex-1 text-center sm:text-left">
+          <div className="flex flex-row items-center justify-between gap-6">
+            <div className="flex-1 text-left">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700 block mb-1">
                 Curriculum Vitae
               </span>
-              <h1 className="text-3xl sm:text-4xl font-black text-stone-900 tracking-tight">
+              <h1 className="text-4xl font-black text-stone-900 tracking-tight">
                 {personal.fullName || 'Nama Lengkap'}
               </h1>
               <p className="text-sm font-semibold text-amber-700 mt-0.5">
@@ -28,7 +28,7 @@ export const WarmAmber: React.FC<Props> = ({ data }) => {
               </p>
 
               {/* Contact Icons */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1.5 mt-3 text-[11px] text-stone-700 font-medium">
+              <div className="flex flex-wrap items-center justify-start gap-x-4 gap-y-1.5 mt-3 text-[11px] text-stone-700 font-medium">
                 {personal.email && (
                   <div className="flex items-center gap-1.5">
                     <Mail className="w-3.5 h-3.5 text-amber-700 shrink-0" />

@@ -15,8 +15,8 @@ export const TopInfobar: React.FC<Props> = ({ data }) => {
       <div>
         {/* Solid Top Infobar */}
         <header className="bg-[#1e293b] text-white p-7">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
-            <div className="flex items-center gap-5 text-center sm:text-left flex-1">
+          <div className="flex flex-row items-center justify-between gap-5">
+            <div className="flex items-center gap-5 text-left flex-1">
               {personal.photoUrl ? (
                 <div className="w-20 h-20 rounded-lg overflow-hidden border-2 border-slate-400 shadow shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -34,7 +34,7 @@ export const TopInfobar: React.FC<Props> = ({ data }) => {
               )}
 
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                <h1 className="text-3xl font-bold tracking-tight text-white">
                   {personal.fullName || 'Nama Lengkap'}
                 </h1>
                 <p className="text-sm font-semibold text-slate-300 mt-0.5">
@@ -46,19 +46,19 @@ export const TopInfobar: React.FC<Props> = ({ data }) => {
             {/* Quick Contact Chips in Header */}
             <div className="text-right text-[11px] text-slate-300 space-y-1 shrink-0">
               {personal.email && (
-                <div className="flex items-center sm:justify-end gap-1.5">
+                <div className="flex items-center justify-end gap-1.5">
                   <span>{personal.email}</span>
                   <Mail className="w-3.5 h-3.5 text-slate-400" />
                 </div>
               )}
               {personal.phone && (
-                <div className="flex items-center sm:justify-end gap-1.5">
+                <div className="flex items-center justify-end gap-1.5">
                   <span>{personal.phone}</span>
                   <Phone className="w-3.5 h-3.5 text-slate-400" />
                 </div>
               )}
               {personal.address && (
-                <div className="flex items-center sm:justify-end gap-1.5">
+                <div className="flex items-center justify-end gap-1.5">
                   <span>{personal.address}</span>
                   <MapPin className="w-3.5 h-3.5 text-slate-400" />
                 </div>

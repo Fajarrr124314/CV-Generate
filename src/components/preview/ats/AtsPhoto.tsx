@@ -14,7 +14,7 @@ export const AtsPhoto: React.FC<Props> = ({ data }) => {
     <div className="w-full min-h-[297mm] bg-white text-slate-900 font-sans leading-relaxed text-[13px] box-border p-12 flex flex-col justify-between">
       <div>
         {/* Header with Photo on Top-Left */}
-        <header className="pb-4 border-b-2 border-slate-900 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <header className="pb-4 border-b-2 border-slate-900 flex flex-row items-center gap-5">
           {/* Formal Top-Left Passport Photo */}
           {personal.photoUrl ? (
             <div className="w-24 h-28 rounded-md overflow-hidden border-2 border-slate-700 shadow-xs shrink-0">
@@ -46,7 +46,7 @@ export const AtsPhoto: React.FC<Props> = ({ data }) => {
               {personal.jobTitle || 'Posisi / Role Profesional'}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 mt-3 text-xs text-slate-700">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-3 text-xs text-slate-700">
               {personal.email && (
                 <div className="flex items-center gap-1.5">
                   <Mail className="w-3.5 h-3.5 text-slate-600 shrink-0" />
