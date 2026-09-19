@@ -55,6 +55,20 @@ export const ExportBar: React.FC<Props> = ({
     }
   };
 
+  const handlePrint = async () => {
+    try {
+      setIsExporting('PRINT');
+      setIsOpen(false);
+      await printDocument(elementId);
+      triggerDone();
+    } catch (err) {
+      console.error('Print error:', err);
+      alert('Gagal membuka dialog cetak.');
+    } finally {
+      setIsExporting(null);
+    }
+  };
+
   const triggerDone = () => {
     setIsDone(true);
     setTimeout(() => setIsDone(false), 2500);
@@ -226,10 +240,8 @@ export const ExportBar: React.FC<Props> = ({
             {/* Option 4: Print */}
             <button
               type="button"
-              onClick={() => {
-                setIsOpen(false);
-                printDocument();
-              }}
+              onClick={handlePrint}
+              disabled={isExporting !== null}
               className={`w-full px-2.5 py-2 rounded-lg flex items-center justify-between transition-colors text-left group cursor-pointer border-t ${
                 isDark
                   ? 'border-slate-800 hover:bg-slate-800 active:bg-slate-700'
@@ -238,14 +250,18 @@ export const ExportBar: React.FC<Props> = ({
             >
               <div className="flex items-center gap-2.5">
                 <div className="w-7 h-7 rounded-lg bg-slate-500/15 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <Printer className="w-4 h-4" />
+                  {isExporting === 'PRINT' ? (
+                    <Loader2 className="w-4 h-4 animate-spin text-indigo-500" />
+                  ) : (
+                    <Printer className="w-4 h-4" />
+                  )}
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-slate-900 dark:text-white">
-                    Cetak Dokumen
+                    {isExporting === 'PRINT' ? 'Menyiapkan Cetak...' : 'Cetak Dokumen'}
                   </div>
                   <div className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
-                    Dialog print browser langsung
+                    Presisi 1 Halaman A4 Fit
                   </div>
                 </div>
               </div>
@@ -342,12 +358,22 @@ export const ExportBar: React.FC<Props> = ({
         {/* Native Print */}
         <button
           type="button"
-          onClick={printDocument}
+          onClick={handlePrint}
+          disabled={isExporting !== null}
           className={`px-2.5 py-1.5 border text-xs font-medium rounded-lg flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer shrink-0 ${printBtnStyle}`}
-          title="Cetak langsung atau simpan via dialog print browser"
+          title="Cetak langsung presisi 1 halaman A4"
         >
-          <Printer className={`w-3.5 h-3.5 shrink-0 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
-          <span>Print</span>
+          {isExporting === 'PRINT' ? (
+            <>
+              <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0 text-indigo-500" />
+              <span className="text-indigo-500 font-semibold">Print...</span>
+            </>
+          ) : (
+            <>
+              <Printer className={`w-3.5 h-3.5 shrink-0 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+              <span>Print</span>
+            </>
+          )}
         </button>
       </div>
     );

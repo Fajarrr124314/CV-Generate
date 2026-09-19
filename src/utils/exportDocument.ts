@@ -50,9 +50,120 @@ export const exportToPDF = async (elementId: string, filename?: string) => {
   pdf.save(filename || `SpaceLive-Resume-${Date.now()}.pdf`);
 };
 
-export const printDocument = () => {
-  // Allow any active UI menus or dropdowns to finish closing before opening native print dialog
-  setTimeout(() => {
+export const printDocument = async (elementId: string = 'resume-preview') => {
+  const element = document.getElementById(elementId);
+  if (!element) {
     window.print();
-  }, 100);
+    return;
+  }
+
+  try {
+    // 1. Render high-resolution capture of the exact CV layout (matches exportToPDF)
+    const dataUrl = await toPng(element, {
+      quality: 1.0,
+      pixelRatio: 2.5,
+      backgroundColor: '#ffffff',
+    });
+
+    // 2. Create or reuse hidden print iframe
+    let iframe = document.getElementById('sl-print-frame') as HTMLIFrameElement | null;
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'sl-print-frame';
+      iframe.style.position = 'fixed';
+      iframe.style.right = '0';
+      iframe.style.bottom = '0';
+      iframe.style.width = '0';
+      iframe.style.height = '0';
+      iframe.style.border = '0';
+      iframe.style.visibility = 'hidden';
+      document.body.appendChild(iframe);
+    }
+
+    const doc = iframe.contentWindow?.document;
+    if (!doc) {
+      window.print();
+      return;
+    }
+
+    doc.open();
+    doc.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8" />
+          <title>SpaceLive CV</title>
+          <style>
+            @page {
+              size: A4 portrait;
+              margin: 0mm;
+            }
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            html, body {
+              width: 100%;
+              height: 100%;
+              background: #ffffff;
+              overflow: hidden;
+            }
+            .print-wrapper {
+              width: 100vw;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              page-break-after: avoid;
+              page-break-inside: avoid;
+            }
+            img {
+              max-width: 100%;
+              max-height: 100%;
+              width: auto;
+              height: auto;
+              object-fit: contain;
+              display: block;
+              page-break-after: avoid;
+              page-break-inside: avoid;
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="print-wrapper">
+            <img id="print-cv-image" src="${dataUrl}" alt="SpaceLive CV" />
+          </div>
+        </body>
+      </html>
+    `);
+    doc.close();
+
+    // 3. Trigger print once image is ready
+    const printImg = doc.getElementById('print-cv-image') as HTMLImageElement | null;
+    const triggerPrint = () => {
+      try {
+        iframe?.contentWindow?.focus();
+        iframe?.contentWindow?.print();
+      } catch {
+        window.print();
+      }
+    };
+
+    if (printImg) {
+      if (printImg.complete) {
+        setTimeout(triggerPrint, 50);
+      } else {
+        printImg.onload = () => setTimeout(triggerPrint, 50);
+      }
+    } else {
+      setTimeout(triggerPrint, 80);
+    }
+  } catch (err) {
+    console.warn('High-res canvas print failed, falling back to native window.print():', err);
+    window.print();
+  }
 };
+
