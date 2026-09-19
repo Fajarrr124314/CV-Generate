@@ -38,7 +38,9 @@ import {
   ZoomOut,
   Maximize2,
   Layout,
-  ArrowLeft
+  ArrowLeft,
+  Eye,
+  X
 } from 'lucide-react';
 
 const TEMPLATES = [
@@ -81,6 +83,35 @@ function BuilderContent() {
   const [zoom, setZoom] = useState(0.9);
   const [lastSavedTime, setLastSavedTime] = useState<string>('Baru saja');
   const [notification, setNotification] = useState<string | null>(null);
+  const [isMobilePreviewOpen, setIsMobilePreviewOpen] = useState(false);
+  const [mobileZoom, setMobileZoom] = useState(0.48);
+
+  // Lock body scroll when mobile preview modal is open
+  useEffect(() => {
+    if (isMobilePreviewOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobilePreviewOpen]);
+
+  // Dynamically calculate best mobile zoom on mount and resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+        const padding = 32;
+        const availableWidth = window.innerWidth - padding;
+        const fitScale = Math.max(0.35, Math.min(0.6, availableWidth / 794));
+        setMobileZoom(Number(fitScale.toFixed(2)));
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Initialize from LocalStorage and query param safely on client mount
   useEffect(() => {
@@ -287,6 +318,17 @@ function BuilderContent() {
               <span className="hidden xl:inline">Reset</span>
             </button>
 
+            {/* Mobile Top Preview Button */}
+            <button
+              type="button"
+              onClick={() => setIsMobilePreviewOpen(true)}
+              className="lg:hidden px-2.5 py-1.5 bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-lg shadow-xs flex items-center gap-1.5 transition-all cursor-pointer active:scale-95"
+              title="Lihat Preview Dokumen"
+            >
+              <Eye className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
+              <span>Preview</span>
+            </button>
+
             {/* Export Bar */}
             <ExportBar
               elementId="resume-preview"
@@ -419,8 +461,8 @@ function BuilderContent() {
           </div>
         </section>
 
-        {/* RIGHT COLUMN: Live Preview Canvas */}
-        <section className="flex-1 bg-slate-200/80 flex flex-col h-auto lg:h-[calc(100vh-60px)] overflow-hidden">
+        {/* RIGHT COLUMN: Live Preview Canvas (Desktop Split-Screen & Off-Screen on Mobile) */}
+        <section className="fixed -left-[9999px] top-0 pointer-events-none lg:static lg:flex lg:pointer-events-auto flex-1 bg-slate-200/80 flex-col h-auto lg:h-[calc(100vh-60px)] overflow-hidden">
           {/* Canvas Controls Toolbar (Zoom, Fit) */}
           <div className="no-print bg-white/80 backdrop-blur-xs border-b border-slate-200 px-6 py-2 flex items-center justify-between">
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
@@ -483,6 +525,139 @@ function BuilderContent() {
           </div>
         </section>
       </main>
+
+      {/* Floating Sticky Preview Button for Mobile (Always follows user scroll) */}
+      <div className="no-print fixed bottom-6 right-5 z-40 lg:hidden">
+        <button
+          type="button"
+          onClick={() => setIsMobilePreviewOpen(true)}
+          className="group px-4 py-3 bg-slate-900/95 hover:bg-slate-800 text-white rounded-full shadow-[0_10px_25px_-5px_rgba(79,70,229,0.5)] border border-slate-700/80 backdrop-blur-md flex items-center gap-2.5 active:scale-95 transition-all cursor-pointer ring-2 ring-indigo-500/20"
+          title="Buka Preview Dokumen A4"
+        >
+          <div className="relative">
+            <Eye className="w-4 h-4 text-cyan-400 animate-pulse" />
+            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+          </div>
+          <span className="text-xs font-bold tracking-wide">Preview CV</span>
+          <span className="px-1.5 py-0.5 rounded-full bg-indigo-500/30 text-indigo-300 text-[10px] font-mono border border-indigo-400/30 font-semibold">
+            A4
+          </span>
+        </button>
+      </div>
+
+      {/* Floating Mobile Preview Modal / Sheet */}
+      {isMobilePreviewOpen && (
+        <div className="no-print fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex flex-col p-3 sm:p-5 animate-in fade-in duration-200 lg:hidden">
+          {/* Modal Header Bar */}
+          <div className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 flex items-center justify-between shadow-2xl shrink-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <div className="truncate">
+                <h2 className="text-xs font-bold text-white truncate">
+                  {TEMPLATES.find((t) => t.id === data.templateId)?.name || 'Preview Dokumen'}
+                </h2>
+                <span className="text-[10px] text-slate-400 font-mono">1 Halaman A4 Presisi</span>
+              </div>
+            </div>
+
+            {/* Zoom & Close Controls */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <div className="flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setMobileZoom((z) => Math.max(0.3, Number((z - 0.05).toFixed(2))))}
+                  className="p-1 hover:bg-slate-700 text-slate-300 rounded cursor-pointer"
+                  title="Zoom Out"
+                >
+                  <ZoomOut className="w-3.5 h-3.5" />
+                </button>
+                <span className="text-[10px] font-mono font-medium text-slate-200 px-1 min-w-[34px] text-center">
+                  {Math.round(mobileZoom * 100)}%
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setMobileZoom((z) => Math.min(1.2, Number((z + 0.05).toFixed(2))))}
+                  className="p-1 hover:bg-slate-700 text-slate-300 rounded cursor-pointer"
+                  title="Zoom In"
+                >
+                  <ZoomIn className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const availableWidth = window.innerWidth - 32;
+                    const fitScale = Math.max(0.35, Math.min(0.6, availableWidth / 794));
+                    setMobileZoom(Number(fitScale.toFixed(2)));
+                  }}
+                  className="px-1.5 py-0.5 hover:bg-slate-700 text-cyan-400 rounded text-[10px] font-bold cursor-pointer"
+                  title="Fit Screen"
+                >
+                  Fit
+                </button>
+              </div>
+
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setIsMobilePreviewOpen(false)}
+                className="p-1.5 bg-slate-800 hover:bg-rose-500/20 hover:text-rose-400 text-slate-300 rounded-lg border border-slate-700 transition-colors cursor-pointer ml-1"
+                title="Tutup Preview"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Modal Scrollable Canvas */}
+          <div className="flex-1 overflow-auto my-3 flex justify-center items-start rounded-xl border border-slate-800/80 bg-slate-900/50 p-2 sm:p-4">
+            <div
+              className="transition-transform duration-100 ease-out origin-top shadow-2xl rounded-sm shrink-0"
+              style={{
+                transform: `scale(${mobileZoom})`,
+                width: '210mm',
+              }}
+            >
+              <div className="bg-white min-h-[297mm] w-[210mm] shadow-2xl rounded-xs overflow-hidden">
+                <ResumePreviewRenderer data={data} />
+              </div>
+            </div>
+          </div>
+
+          {/* Modal Bottom Bar: Fast Template Switcher & Close button */}
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-2.5 shadow-2xl shrink-0">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <span className="text-[11px] text-slate-400 shrink-0">Template:</span>
+              <select
+                value={data.templateId}
+                onChange={(e) => handleSelectTemplate(e.target.value)}
+                className="w-full sm:w-auto bg-slate-800 border border-slate-700 text-white text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+              >
+                {TEMPLATES.filter((t) => t.category === data.category).map((tmpl) => (
+                  <option key={tmpl.id} value={tmpl.id}>
+                    {tmpl.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <ExportBar
+                elementId="resume-preview"
+                candidateName={data.personal.fullName}
+                documentType={data.category === 'COVER_LETTER' ? 'Cover_Letter' : 'CV'}
+              />
+
+              <button
+                type="button"
+                onClick={() => setIsMobilePreviewOpen(false)}
+                className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 text-xs font-semibold rounded-lg transition-all cursor-pointer whitespace-nowrap"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
