@@ -899,10 +899,13 @@ export default function HomePage() {
       <section id="templates" className="py-20 bg-slate-900/50 border-t border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">
-              Koleksi Desain Nyata
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase mb-4">
+              MULAI BUAT <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-300 to-indigo-400">CV GRATIS</span>
             </h2>
-            <p className="text-3xl font-extrabold text-white tracking-tight">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-indigo-400 mb-2">
+              Koleksi Desain Nyata
+            </p>
+            <p className="text-2xl sm:text-3xl font-extrabold text-slate-200 tracking-tight">
               Pilih Format yang Sesuai dengan Target Karir Anda
             </p>
             <p className="mt-3 text-sm text-slate-400">
