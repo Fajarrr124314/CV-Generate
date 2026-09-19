@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
@@ -256,123 +256,215 @@ export default function HomePage() {
     setSelectedPreview(templates[prevIndex]);
   };
 
+  // Automatically calculate ideal fit scale based on viewport dimensions
+  const handleFitZoom = () => {
+    if (typeof window === 'undefined') return;
+    const isMobile = window.innerWidth < 640;
+    const isTablet = window.innerWidth < 1024;
+    
+    // Available width calculation
+    const paddingX = isMobile ? 24 : isTablet ? 40 : 64;
+    const availW = window.innerWidth - paddingX;
+
+    // Available height calculation
+    const headerH = isMobile ? 115 : 75;
+    const availH = window.innerHeight - headerH - (isMobile ? 32 : 48);
+
+    const scaleW = availW / 794;
+    const scaleH = availH / 1123;
+
+    // On mobile, prioritize full-width readability
+    // On tablet & desktop, fit full A4 page into viewport
+    let fit: number;
+    if (isMobile) {
+      fit = Math.min(scaleW, 0.55);
+    } else if (isTablet) {
+      fit = Math.min(scaleW * 0.9, scaleH * 0.95);
+    } else {
+      fit = Math.min(scaleW * 0.85, scaleH * 0.95, 0.88);
+    }
+
+    setModalZoom(Number(Math.max(0.3, fit).toFixed(2)));
+  };
+
+  // Lock body scroll and auto-fit zoom when preview modal opens
+  useEffect(() => {
+    if (selectedPreview) {
+      document.body.style.overflow = 'hidden';
+      handleFitZoom();
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedPreview]);
+
+  // Window resize handler while preview modal is open
+  useEffect(() => {
+    const onResize = () => {
+      if (selectedPreview) {
+        handleFitZoom();
+      }
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [selectedPreview]);
+
+  // Keyboard navigation shortcuts: Escape to close, Left/Right arrows to browse
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedPreview) return;
+      if (e.key === 'Escape') {
+        setSelectedPreview(null);
+      } else if (e.key === 'ArrowRight') {
+        handleNextPreview();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrevPreview();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedPreview]);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
       {/* Quick Fullscreen Preview Modal */}
       {selectedPreview && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex flex-col justify-between p-4 sm:p-6 animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex flex-col p-3 sm:p-5 animate-in fade-in duration-200">
           {/* Modal Header Bar */}
-          <div className="max-w-6xl w-full mx-auto bg-slate-900 border border-slate-800 rounded-xl px-5 py-3 flex flex-wrap items-center justify-between gap-3 shadow-2xl">
-            <div className="flex items-center gap-3">
-              <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${selectedPreview.badgeColor}`}>
-                {selectedPreview.badge}
-              </span>
-              <div>
-                <h3 className="text-base font-bold text-white leading-none">
-                  {selectedPreview.name}
-                </h3>
-                <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">
-                  {selectedPreview.category} • {selectedPreview.description}
-                </p>
-              </div>
-            </div>
+          <div className="max-w-6xl w-full mx-auto bg-slate-900 border border-slate-800 rounded-xl p-3 sm:px-5 sm:py-3 shadow-2xl shrink-0">
+            {/* Mobile Layout: 2 Clean Rows (< sm) | Desktop Layout: 1 Row (sm:) */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
+              {/* Row 1: Title, Badge & Quick Close Button */}
+              <div className="flex items-center justify-between sm:justify-start gap-2.5 min-w-0">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className={`text-[10px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 rounded-full border shrink-0 ${selectedPreview.badgeColor}`}>
+                    {selectedPreview.badge}
+                  </span>
+                  <div className="truncate">
+                    <h3 className="text-xs sm:text-base font-bold text-white leading-tight truncate">
+                      {selectedPreview.name}
+                    </h3>
+                    <p className="text-[10px] sm:text-xs text-slate-400 mt-0.5 hidden md:block truncate">
+                      {selectedPreview.category} • {selectedPreview.description}
+                    </p>
+                  </div>
+                </div>
 
-            {/* Modal Zoom & Navigation Controls */}
-            <div className="flex items-center gap-2">
-              <div className="flex items-center bg-slate-800 rounded-lg p-1 border border-slate-700 text-xs">
+                {/* Mobile-only close button on Row 1 */}
                 <button
                   type="button"
-                  onClick={() => setModalZoom((z) => Math.max(0.4, Number((z - 0.1).toFixed(2))))}
-                  className="p-1.5 hover:bg-slate-700 text-slate-300 rounded cursor-pointer"
-                  title="Perkecil"
+                  onClick={() => setSelectedPreview(null)}
+                  className="sm:hidden p-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 rounded-lg border border-slate-700 transition-colors cursor-pointer shrink-0"
+                  title="Tutup Pratinjau"
                 >
-                  <ZoomOut className="w-3.5 h-3.5" />
-                </button>
-                <span className="px-2 font-mono text-[11px] text-slate-300 min-w-[40px] text-center">
-                  {Math.round(modalZoom * 100)}%
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setModalZoom((z) => Math.min(1.4, Number((z + 0.1).toFixed(2))))}
-                  className="p-1.5 hover:bg-slate-700 text-slate-300 rounded cursor-pointer"
-                  title="Perbesar"
-                >
-                  <ZoomIn className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setModalZoom(0.85)}
-                  className="p-1.5 hover:bg-slate-700 text-slate-300 rounded cursor-pointer ml-1"
-                  title="Reset Zoom"
-                >
-                  <Maximize2 className="w-3.5 h-3.5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Prev / Next Template Navigation */}
-              <div className="flex items-center gap-1">
+              {/* Row 2: Zoom Controls (with FIT button), Prev/Next, and Use Template */}
+              <div className="flex items-center justify-between sm:justify-end gap-2 border-t sm:border-t-0 border-slate-800/80 pt-2 sm:pt-0">
+                {/* Zoom Controls with FIT button */}
+                <div className="flex items-center bg-slate-800/90 rounded-lg p-0.5 sm:p-1 border border-slate-700 text-xs shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setModalZoom((z) => Math.max(0.3, Number((z - 0.1).toFixed(2))))}
+                    className="p-1 sm:p-1.5 hover:bg-slate-700 text-slate-300 rounded cursor-pointer transition-colors"
+                    title="Perkecil (-10%)"
+                  >
+                    <ZoomOut className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleFitZoom}
+                    className="px-2 py-0.5 sm:py-1 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 rounded text-[10px] sm:text-xs font-bold cursor-pointer transition-colors"
+                    title="Sesuaikan Ukuran Layar (FIT)"
+                  >
+                    FIT
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setModalZoom((z) => Math.min(1.4, Number((z + 0.1).toFixed(2))))}
+                    className="p-1 sm:p-1.5 hover:bg-slate-700 text-slate-300 rounded cursor-pointer transition-colors"
+                    title="Perbesar (+10%)"
+                  >
+                    <ZoomIn className="w-3.5 h-3.5" />
+                  </button>
+                  <span className="px-1.5 font-mono text-[10px] sm:text-[11px] text-slate-400 min-w-[36px] text-center hidden min-[420px]:inline-block">
+                    {Math.round(modalZoom * 100)}%
+                  </span>
+                </div>
+
+                {/* Prev / Next Template Navigation */}
+                <div className="flex items-center gap-1 shrink-0">
+                  <button
+                    type="button"
+                    onClick={handlePrevPreview}
+                    className="p-1.5 sm:p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 cursor-pointer transition-colors"
+                    title="Template Sebelumnya (←)"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNextPreview}
+                    className="p-1.5 sm:p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 cursor-pointer transition-colors"
+                    title="Template Selanjutnya (→)"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </button>
+                </div>
+
+                {/* Action Button: Use This Template */}
+                <Link
+                  href={`/builder?template=${selectedPreview.id}`}
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-[11px] sm:text-xs font-bold rounded-lg shadow-lg flex items-center gap-1.5 cursor-pointer shrink-0 transition-all"
+                >
+                  <span>Gunakan</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+
+                {/* Desktop Close Button */}
                 <button
                   type="button"
-                  onClick={handlePrevPreview}
-                  className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 cursor-pointer"
-                  title="Template Sebelumnya"
+                  onClick={() => setSelectedPreview(null)}
+                  className="hidden sm:flex p-2 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 rounded-lg border border-slate-700 transition-colors cursor-pointer shrink-0"
+                  title="Tutup Pratinjau (Esc)"
                 >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextPreview}
-                  className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 cursor-pointer"
-                  title="Template Selanjutnya"
-                >
-                  <ChevronRight className="w-4 h-4" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-
-              {/* Action Button: Use This Template */}
-              <Link
-                href={`/builder?template=${selectedPreview.id}`}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg shadow-lg flex items-center gap-1.5 cursor-pointer ml-2"
-              >
-                <span>Gunakan Desain Ini</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-
-              {/* Close Button */}
-              <button
-                type="button"
-                onClick={() => setSelectedPreview(null)}
-                className="p-2 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 rounded-lg border border-slate-700 transition-colors cursor-pointer ml-1"
-                title="Tutup Pratinjau"
-              >
-                <X className="w-4 h-4" />
-              </button>
             </div>
           </div>
 
-          {/* Modal Preview Body with Smooth Scroll & Scaling */}
-          <div className="flex-1 overflow-auto my-4 flex items-start justify-center p-2 sm:p-4">
+          {/* Modal Preview Body with Dimension Sizer (Guarantees Perfect Centering & No Left-side Clipping) */}
+          <div className="flex-1 overflow-auto my-3 flex items-start justify-center p-2 sm:p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
             <div
               style={{
-                transform: `scale(${modalZoom})`,
-                transformOrigin: 'top center',
-                width: '210mm',
+                width: `${794 * modalZoom}px`,
+                height: `${1123 * modalZoom}px`,
               }}
-              className="bg-white shadow-2xl rounded-xs overflow-hidden transition-transform duration-100 ease-out"
+              className="relative shrink-0 transition-all duration-150 ease-out my-auto shadow-2xl"
             >
-              <ResumePreviewRenderer
-                data={{
-                  ...INITIAL_RESUME_DATA,
-                  templateId: selectedPreview.id,
-                  category: selectedPreview.rawCategory,
+              <div
+                style={{
+                  width: '794px',
+                  minHeight: '1123px',
+                  transform: `scale(${modalZoom})`,
+                  transformOrigin: 'top left',
                 }}
-              />
+                className="absolute top-0 left-0 bg-white shadow-2xl rounded-xs overflow-hidden"
+              >
+                <ResumePreviewRenderer
+                  data={{
+                    ...INITIAL_RESUME_DATA,
+                    templateId: selectedPreview.id,
+                    category: selectedPreview.rawCategory,
+                  }}
+                />
+              </div>
             </div>
-          </div>
-
-          {/* Modal Bottom Footer Hint */}
-          <div className="max-w-md mx-auto text-center text-xs text-slate-400">
-            Tekan <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-slate-300">Esc</kbd> atau tombol Tutup untuk kembali ke galeri.
           </div>
         </div>
       )}
@@ -505,21 +597,21 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  {/* Clean Centered Miniature Preview Box */}
+                  {/* Clean Centered Miniature Preview Box with Authentic A4 Ratio (210/297) */}
                   <div
                     onClick={() => setSelectedPreview(tpl)}
-                    className="relative w-full aspect-[210/260] rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner group/box mb-4 cursor-pointer"
+                    className="relative w-full aspect-[210/297] rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner group/box mb-4 cursor-pointer"
                   >
-                    {/* Centered Scaled Sheet */}
-                    <div className="absolute top-0 left-0 w-full flex justify-center">
+                    {/* Centered Scaled Sheet with Authentic Proportion */}
+                    <div className="absolute inset-0 flex items-start justify-center overflow-hidden bg-slate-950 p-1.5 sm:p-2">
                       <div
                         style={{
                           width: '794px',
                           minHeight: '1123px',
-                          transform: 'scale(0.35)',
+                          transform: 'scale(0.44)',
                           transformOrigin: 'top center',
                         }}
-                        className="bg-white shadow-2xl shrink-0 select-none pointer-events-none"
+                        className="bg-white shadow-2xl shrink-0 select-none pointer-events-none rounded-xs"
                       >
                         <ResumePreviewRenderer
                           data={{
