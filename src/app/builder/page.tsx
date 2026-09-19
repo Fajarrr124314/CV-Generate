@@ -80,11 +80,27 @@ function BuilderContent() {
   const [data, setData] = useState<ResumeData>(INITIAL_RESUME_DATA);
   const [isMounted, setIsMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<'personal' | 'experience' | 'education' | 'skills' | 'coverLetter'>('personal');
-  const [zoom, setZoom] = useState(0.9);
+  const calculateDesktopFit = () => {
+    if (typeof window === 'undefined') return 0.85;
+    const rightCol = window.innerWidth >= 1280 ? window.innerWidth * 0.58 : window.innerWidth * 0.54;
+    const availW = rightCol - 48;
+    const availH = window.innerHeight - 130;
+    const fit = Math.min(availW / 794, availH / 1123);
+    return Number(Math.max(0.45, Math.min(1.0, fit)).toFixed(2));
+  };
+
+  const calculateMobileFit = () => {
+    if (typeof window === 'undefined') return 0.45;
+    const padding = 28;
+    const availableWidth = window.innerWidth - padding;
+    return Number(Math.max(0.32, Math.min(0.6, availableWidth / 794)).toFixed(2));
+  };
+
+  const [zoom, setZoom] = useState(0.85);
   const [lastSavedTime, setLastSavedTime] = useState<string>('Baru saja');
   const [notification, setNotification] = useState<string | null>(null);
   const [isMobilePreviewOpen, setIsMobilePreviewOpen] = useState(false);
-  const [mobileZoom, setMobileZoom] = useState(0.48);
+  const [mobileZoom, setMobileZoom] = useState(0.45);
 
   // Lock body scroll when mobile preview modal is open
   useEffect(() => {
@@ -98,14 +114,15 @@ function BuilderContent() {
     };
   }, [isMobilePreviewOpen]);
 
-  // Dynamically calculate best mobile zoom on mount and resize
+  // Dynamically calculate best zoom on mount and window resize
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-        const padding = 32;
-        const availableWidth = window.innerWidth - padding;
-        const fitScale = Math.max(0.35, Math.min(0.6, availableWidth / 794));
-        setMobileZoom(Number(fitScale.toFixed(2)));
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 1024) {
+          setMobileZoom(calculateMobileFit());
+        } else {
+          setZoom(calculateDesktopFit());
+        }
       }
     };
     handleResize();
@@ -596,9 +613,9 @@ function BuilderContent() {
 
               <button
                 type="button"
-                onClick={() => setZoom(0.85)}
+                onClick={() => setZoom(calculateDesktopFit())}
                 className="px-2 py-1 bg-white border border-slate-300 rounded hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors cursor-pointer flex items-center gap-1"
-                title="Reset Zoom"
+                title="Reset Zoom ke Ukuran Layar Pas (FIT)"
               >
                 <Maximize2 className="w-3 h-3" />
                 <span className="hidden sm:inline">Fit</span>
@@ -631,7 +648,10 @@ function BuilderContent() {
       <div className="no-print fixed bottom-6 right-5 z-40 lg:hidden">
         <button
           type="button"
-          onClick={() => setIsMobilePreviewOpen(true)}
+          onClick={() => {
+            setMobileZoom(calculateMobileFit());
+            setIsMobilePreviewOpen(true);
+          }}
           className="group px-4 py-3 bg-slate-900/95 hover:bg-slate-800 text-white rounded-full shadow-[0_10px_25px_-5px_rgba(79,70,229,0.5)] border border-slate-700/80 backdrop-blur-md flex items-center gap-2.5 active:scale-95 transition-all cursor-pointer ring-2 ring-indigo-500/20"
           title="Buka Preview Dokumen A4"
         >
@@ -685,11 +705,7 @@ function BuilderContent() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => {
-                    const availableWidth = window.innerWidth - 32;
-                    const fitScale = Math.max(0.35, Math.min(0.6, availableWidth / 794));
-                    setMobileZoom(Number(fitScale.toFixed(2)));
-                  }}
+                  onClick={() => setMobileZoom(calculateMobileFit())}
                   className="px-1.5 py-0.5 hover:bg-slate-700 text-cyan-400 rounded text-[10px] font-bold cursor-pointer"
                   title="Fit Screen"
                 >

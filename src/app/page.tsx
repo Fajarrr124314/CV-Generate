@@ -242,6 +242,39 @@ export default function HomePage() {
     },
   ];
 
+  // Automatically calculate ideal fit scale based on viewport dimensions
+  const calculateFitScale = () => {
+    if (typeof window === 'undefined') return 0.75;
+    const isMobile = window.innerWidth < 640;
+    const isTablet = window.innerWidth < 1024;
+    
+    if (isMobile) {
+      // Mobile: full-width comfortable reading fit
+      const availW = window.innerWidth - 24;
+      return Number(Math.max(0.35, Math.min(0.55, availW / 794)).toFixed(2));
+    }
+
+    if (isTablet) {
+      // Tablet: fit within screen boundaries
+      const availW = window.innerWidth - 48;
+      const availH = window.innerHeight - 130;
+      const fit = Math.min(availW / 794, availH / 1123);
+      return Number(Math.max(0.4, Math.min(0.85, fit)).toFixed(2));
+    }
+
+    // Desktop: fit entire A4 document into viewport without scrolling
+    const availW = Math.min(window.innerWidth - 80, 1150);
+    const availH = window.innerHeight - 130;
+    const fit = Math.min(availW / 794, availH / 1123);
+    return Number(Math.max(0.5, Math.min(0.92, fit)).toFixed(2));
+  };
+
+  const openPreview = (tpl: TemplateItem) => {
+    const fit = calculateFitScale();
+    setModalZoom(fit);
+    setSelectedPreview(tpl);
+  };
+
   const handleNextPreview = () => {
     if (!selectedPreview) return;
     const currentIndex = templates.findIndex((t) => t.id === selectedPreview.id);
@@ -256,42 +289,10 @@ export default function HomePage() {
     setSelectedPreview(templates[prevIndex]);
   };
 
-  // Automatically calculate ideal fit scale based on viewport dimensions
-  const handleFitZoom = () => {
-    if (typeof window === 'undefined') return;
-    const isMobile = window.innerWidth < 640;
-    const isTablet = window.innerWidth < 1024;
-    
-    // Available width calculation
-    const paddingX = isMobile ? 24 : isTablet ? 40 : 64;
-    const availW = window.innerWidth - paddingX;
-
-    // Available height calculation
-    const headerH = isMobile ? 115 : 75;
-    const availH = window.innerHeight - headerH - (isMobile ? 32 : 48);
-
-    const scaleW = availW / 794;
-    const scaleH = availH / 1123;
-
-    // On mobile, prioritize full-width readability
-    // On tablet & desktop, fit full A4 page into viewport
-    let fit: number;
-    if (isMobile) {
-      fit = Math.min(scaleW, 0.55);
-    } else if (isTablet) {
-      fit = Math.min(scaleW * 0.9, scaleH * 0.95);
-    } else {
-      fit = Math.min(scaleW * 0.85, scaleH * 0.95, 0.88);
-    }
-
-    setModalZoom(Number(Math.max(0.3, fit).toFixed(2)));
-  };
-
-  // Lock body scroll and auto-fit zoom when preview modal opens
+  // Lock body scroll when preview modal is open
   useEffect(() => {
     if (selectedPreview) {
       document.body.style.overflow = 'hidden';
-      handleFitZoom();
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -300,11 +301,11 @@ export default function HomePage() {
     };
   }, [selectedPreview]);
 
-  // Window resize handler while preview modal is open
+  // Window resize handler while preview modal is open: re-calibrate FIT
   useEffect(() => {
     const onResize = () => {
       if (selectedPreview) {
-        handleFitZoom();
+        setModalZoom(calculateFitScale());
       }
     };
     window.addEventListener('resize', onResize);
@@ -377,7 +378,7 @@ export default function HomePage() {
                   </button>
                   <button
                     type="button"
-                    onClick={handleFitZoom}
+                    onClick={() => setModalZoom(calculateFitScale())}
                     className="px-2 py-0.5 sm:py-1 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 rounded text-[10px] sm:text-xs font-bold cursor-pointer transition-colors"
                     title="Sesuaikan Ukuran Layar (FIT)"
                   >
@@ -599,7 +600,7 @@ export default function HomePage() {
 
                   {/* Clean Centered Miniature Preview Box with Authentic A4 Ratio (210/297) */}
                   <div
-                    onClick={() => setSelectedPreview(tpl)}
+                    onClick={() => openPreview(tpl)}
                     className="relative w-full aspect-[210/297] rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner group/box mb-4 cursor-pointer"
                   >
                     {/* Centered Scaled Sheet with Authentic Proportion */}
@@ -629,7 +630,7 @@ export default function HomePage() {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setSelectedPreview(tpl);
+                          openPreview(tpl);
                         }}
                         className="px-4 py-2 bg-white hover:bg-slate-100 text-slate-950 text-xs font-bold rounded-lg shadow-lg flex items-center gap-1.5 transition-transform hover:scale-105 cursor-pointer"
                       >
@@ -660,7 +661,7 @@ export default function HomePage() {
                 <div className="mt-5 grid grid-cols-2 gap-2">
                   <button
                     type="button"
-                    onClick={() => setSelectedPreview(tpl)}
+                    onClick={() => openPreview(tpl)}
                     className="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer border border-slate-700"
                     title="Pratinjau detail sebelum memilih"
                   >
