@@ -70,24 +70,37 @@ export const ExportBar: React.FC<Props> = ({
         type="button"
         disabled={!!isExporting}
         onClick={() => setIsOpen(!isOpen)}
-        className={`px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition-all cursor-pointer shrink-0 disabled:opacity-80`}
-        title="Pilih format unduhan (PDF, PNG, JPG, Cetak)"
+        className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white rounded-lg shadow-sm flex items-center gap-1.5 transition-all cursor-pointer shrink-0 disabled:opacity-80"
+        title="Pilih format unduhan: PDF, JPG, atau PNG"
       >
         {isExporting ? (
           <>
             <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
-            <span>Membuat {isExporting}...</span>
+            <div className="flex flex-col items-start text-left leading-none">
+              <span className="text-xs font-bold leading-none">Membuat {isExporting}...</span>
+              <span className="text-[8.5px] text-indigo-200 font-normal leading-none mt-0.5">Mohon tunggu</span>
+            </div>
           </>
         ) : isDone ? (
           <>
             <Check className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-            <span>Berhasil!</span>
+            <div className="flex flex-col items-start text-left leading-none">
+              <span className="text-xs font-bold leading-none">Berhasil!</span>
+              <span className="text-[8.5px] text-emerald-200 font-normal leading-none mt-0.5">Tersimpan</span>
+            </div>
           </>
         ) : (
           <>
-            <FileDown className="w-3.5 h-3.5 shrink-0" />
-            <span>Unduh</span>
-            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
+            <FileDown className="w-3.5 h-3.5 shrink-0 text-white" />
+            <div className="flex flex-col items-start text-left leading-tight">
+              <div className="flex items-center gap-0.5">
+                <span className="text-xs font-bold leading-none">Unduh</span>
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
+              </div>
+              <span className="text-[8.5px] text-indigo-200 font-medium tracking-tight leading-none mt-0.5">
+                PDF • JPG • PNG
+              </span>
+            </div>
           </>
         )}
       </button>
@@ -114,7 +127,7 @@ export const ExportBar: React.FC<Props> = ({
             <div className={`px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider border-b flex items-center justify-between ${
               isDark ? 'border-slate-800 text-slate-400' : 'border-slate-100 text-slate-400'
             }`}>
-              <span>Pilih Format Unduh</span>
+              <span>Pilih Format (PDF, JPG, PNG)</span>
               <span className="text-indigo-500 font-semibold flex items-center gap-1">
                 <Sparkles className="w-3 h-3" /> Siap Cetak
               </span>
@@ -138,15 +151,15 @@ export const ExportBar: React.FC<Props> = ({
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-indigo-600">
-                    Dokumen PDF
+                    Dokumen PDF (.pdf)
                   </div>
                   <div className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
-                    Standar HRD & lolos ATS (A4)
+                    Standar HRD, cetak A4 & lolos ATS
                   </div>
                 </div>
               </div>
               <span className="text-[9px] font-bold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 px-1.5 py-0.5 rounded border border-indigo-200/50 uppercase">
-                Utama
+                PDF (A4)
               </span>
             </button>
 
@@ -168,15 +181,15 @@ export const ExportBar: React.FC<Props> = ({
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-emerald-600">
-                    Gambar PNG
+                    Gambar PNG (.png)
                   </div>
                   <div className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
-                    Resolusi tinggi jernih tanpa blur
+                    Resolusi tinggi HD jernih tanpa blur
                   </div>
                 </div>
               </div>
               <span className="text-[9px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-200/50 uppercase">
-                HD
+                PNG (HD)
               </span>
             </button>
 
@@ -198,15 +211,15 @@ export const ExportBar: React.FC<Props> = ({
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-amber-600">
-                    Gambar JPG
+                    Gambar JPG (.jpg)
                   </div>
                   <div className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
-                    Ukuran file kompresi ringan
+                    Ukuran file kompresi ringan & praktis
                   </div>
                 </div>
               </div>
               <span className="text-[9px] font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded border border-amber-200/50 uppercase">
-                Ringan
+                JPG (Web)
               </span>
             </button>
 
