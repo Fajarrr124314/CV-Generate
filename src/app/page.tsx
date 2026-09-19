@@ -684,13 +684,13 @@ export default function HomePage() {
       {/* Top Header */}
       <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-violet-600 flex items-center justify-center text-white font-black text-sm sm:text-base shadow-lg shadow-indigo-500/20 shrink-0">
               SL
             </div>
-            <div className="flex items-center gap-2">
-              <span className="font-extrabold text-base sm:text-lg tracking-tight text-white">SpaceLive</span>
-              <span className="hidden sm:inline-flex text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <span className="font-extrabold text-base sm:text-lg tracking-tight text-white shrink-0">SpaceLive</span>
+              <span className="inline-flex text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 whitespace-nowrap">
                 CV & Cover Letter
               </span>
             </div>
@@ -719,10 +719,10 @@ export default function HomePage() {
             </button>
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <Link
               href="/builder"
-              className="px-3.5 sm:px-4 py-2 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold rounded-lg shadow-lg shadow-indigo-600/30 flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer"
+              className="px-3 sm:px-4 py-2 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold rounded-lg shadow-lg shadow-indigo-600/30 flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer whitespace-nowrap"
             >
               <span>Buka Studio</span>
               <ArrowRight className="w-3.5 h-3.5" />
