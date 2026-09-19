@@ -11,6 +11,7 @@ interface Props {
   theme?: 'light' | 'dark';
   variant?: 'auto' | 'dropdown' | 'buttons';
   dropdownPlacement?: 'bottom' | 'top';
+  dropdownAlign?: 'left' | 'right';
 }
 
 export const ExportBar: React.FC<Props> = ({
@@ -20,6 +21,7 @@ export const ExportBar: React.FC<Props> = ({
   theme = 'light',
   variant = 'auto',
   dropdownPlacement = 'bottom',
+  dropdownAlign = 'right',
 }) => {
   const [isExporting, setIsExporting] = useState<string | null>(null);
   const [isDone, setIsDone] = useState(false);
@@ -130,7 +132,9 @@ export const ExportBar: React.FC<Props> = ({
 
           {/* Floating Dropdown Card */}
           <div
-            className={`absolute right-0 z-50 w-72 rounded-xl shadow-2xl border p-1.5 flex flex-col gap-1 transition-all animate-in fade-in zoom-in-95 duration-150 ${
+            className={`absolute z-50 w-72 max-w-[calc(100vw-2.5rem)] rounded-xl shadow-2xl border p-1.5 flex flex-col gap-1 transition-all animate-in fade-in zoom-in-95 duration-150 ${
+              dropdownAlign === 'left' ? 'left-0' : 'right-0'
+            } ${
               dropdownPlacement === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'
             } ${
               isDark

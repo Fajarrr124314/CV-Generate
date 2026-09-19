@@ -768,6 +768,7 @@ function BuilderContent() {
                 theme="dark"
                 variant="dropdown"
                 dropdownPlacement="top"
+                dropdownAlign="left"
               />
 
               <button
