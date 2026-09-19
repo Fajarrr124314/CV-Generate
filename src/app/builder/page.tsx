@@ -213,65 +213,49 @@ function BuilderContent() {
 
       {/* Top Navbar Header (Hidden in Print) */}
       <header className="no-print bg-white border-b border-slate-200 sticky top-0 z-40 px-3 sm:px-4 py-2 sm:py-2.5 shadow-xs">
-        {/* MOBILE VIEW (< lg): Exactly 2 Clean, Compact, Organized Rows */}
-        <div className="lg:hidden flex flex-col gap-2">
-          {/* Row 1: Logo & Navigation + Right Actions (Sample, Reset, Download PDF) */}
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
+        {/* MOBILE VIEW (< lg): Exactly 2 Clean, Compact, Organized Rows (Fits Any Mobile Screen) */}
+        <div className="lg:hidden flex flex-col gap-1.5">
+          {/* Row 1: Logo & Navigation + Full Export Suite (PDF, PNG, JPG, Print) */}
+          <div className="flex items-center justify-between gap-1.5 min-w-0">
+            {/* Left: Back & Brand */}
+            <div className="flex items-center gap-1.5 shrink-0">
               <Link
                 href="/"
-                className="p-1.5 text-slate-500 hover:text-slate-800 transition-colors rounded-lg hover:bg-slate-100"
+                className="p-1.5 text-slate-500 hover:text-slate-800 transition-colors rounded-lg hover:bg-slate-100 shrink-0"
                 title="Kembali ke Beranda"
               >
                 <ArrowLeft className="w-4 h-4" />
               </Link>
-              <div className="flex items-center gap-1.5">
-                <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-indigo-600 to-indigo-800 flex items-center justify-center text-white font-bold text-xs shadow-xs">
+              <div className="flex items-center gap-1.5 shrink-0">
+                <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-indigo-600 to-indigo-800 flex items-center justify-center text-white font-bold text-xs shadow-xs shrink-0">
                   SL
                 </div>
-                <div>
+                <div className="hidden min-[360px]:block">
                   <h1 className="text-xs font-bold text-slate-900 leading-none">SpaceLive</h1>
-                  <p className="text-[9px] text-slate-400 font-medium leading-none mt-0.5">CV Studio</p>
+                  <p className="text-[9px] text-slate-400 font-medium leading-none mt-0.5 hidden min-[400px]:block">CV Studio</p>
                 </div>
               </div>
             </div>
 
-            {/* Quick Actions: Sample, Reset, Export PDF */}
-            <div className="flex items-center gap-1.5 shrink-0">
-              <button
-                type="button"
-                onClick={handleLoadSample}
-                className="p-1.5 bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 rounded-lg shadow-xs transition-colors cursor-pointer"
-                title="Muat Data Contoh"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              </button>
-
-              <button
-                type="button"
-                onClick={handleReset}
-                className="p-1.5 bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-rose-600 rounded-lg shadow-xs transition-colors cursor-pointer"
-                title="Kosongkan Semua Form"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-              </button>
-
+            {/* Right: ExportBar (PDF, PNG, JPG, Print) */}
+            <div className="flex items-center shrink-0">
               <ExportBar
                 elementId="resume-preview"
                 candidateName={data.personal.fullName}
                 documentType={data.category === 'COVER_LETTER' ? 'Cover_Letter' : 'CV'}
+                theme="light"
               />
             </div>
           </div>
 
-          {/* Row 2: Category Segmented Switcher & Template Selector Dropdown */}
-          <div className="flex items-center gap-2 pt-1 border-t border-slate-100">
+          {/* Row 2: Category Segmented Switcher + Template Dropdown + Sample & Reset */}
+          <div className="flex items-center gap-1.5 pt-1 border-t border-slate-100 min-w-0">
             {/* Category Segmented Control */}
-            <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-[11px] shrink-0">
+            <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-[10px] sm:text-[11px] shrink-0">
               <button
                 type="button"
                 onClick={() => handleSelectCategory('ATS')}
-                className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                className={`px-2 sm:px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
                   data.category === 'ATS'
                     ? 'bg-white text-indigo-700 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -282,7 +266,7 @@ function BuilderContent() {
               <button
                 type="button"
                 onClick={() => handleSelectCategory('CREATIVE')}
-                className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                className={`px-2 sm:px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
                   data.category === 'CREATIVE'
                     ? 'bg-white text-indigo-700 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -293,7 +277,7 @@ function BuilderContent() {
               <button
                 type="button"
                 onClick={() => handleSelectCategory('COVER_LETTER')}
-                className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                className={`px-2 sm:px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
                   data.category === 'COVER_LETTER'
                     ? 'bg-white text-indigo-700 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -308,7 +292,7 @@ function BuilderContent() {
               <select
                 value={data.templateId}
                 onChange={(e) => handleSelectTemplate(e.target.value)}
-                className="w-full bg-white border border-slate-300 text-slate-800 text-[11px] font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-xs truncate"
+                className="w-full bg-white border border-slate-300 text-slate-800 text-[11px] font-semibold rounded-lg px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-xs truncate"
               >
                 {TEMPLATES.filter((t) => t.category === data.category).map((tmpl) => (
                   <option key={tmpl.id} value={tmpl.id}>
@@ -316,6 +300,27 @@ function BuilderContent() {
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* Quick Sample & Reset Buttons */}
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                type="button"
+                onClick={handleLoadSample}
+                className="p-1.5 bg-amber-50/80 border border-amber-200/80 hover:bg-amber-100 text-amber-600 rounded-lg shadow-xs transition-colors cursor-pointer shrink-0"
+                title="Muat Data Contoh"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={handleReset}
+                className="p-1.5 bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-500 hover:text-rose-600 rounded-lg shadow-xs transition-colors cursor-pointer shrink-0"
+                title="Kosongkan Semua Form"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
         </div>
@@ -737,17 +742,18 @@ function BuilderContent() {
               </select>
             </div>
 
-            <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+            <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
               <ExportBar
                 elementId="resume-preview"
                 candidateName={data.personal.fullName}
                 documentType={data.category === 'COVER_LETTER' ? 'Cover_Letter' : 'CV'}
+                theme="dark"
               />
 
               <button
                 type="button"
                 onClick={() => setIsMobilePreviewOpen(false)}
-                className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 text-xs font-semibold rounded-lg transition-all cursor-pointer whitespace-nowrap"
+                className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 text-xs font-semibold rounded-lg transition-all cursor-pointer whitespace-nowrap shrink-0"
               >
                 Tutup
               </button>
