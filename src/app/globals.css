@@ -31,6 +31,15 @@ body {
   background: #94a3b8;
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* A4 Print Stylesheet (Locked to exact 1 Page A4) */
 @media print {
   @page {

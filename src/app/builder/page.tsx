@@ -212,16 +212,124 @@ function BuilderContent() {
       )}
 
       {/* Top Navbar Header (Hidden in Print) */}
-      <header className="no-print bg-white border-b border-slate-200 sticky top-0 z-40 px-4 py-2.5 shadow-xs">
-        <div className="max-w-[1700px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <header className="no-print bg-white border-b border-slate-200 sticky top-0 z-40 px-3 sm:px-4 py-2 sm:py-2.5 shadow-xs">
+        {/* MOBILE VIEW (< lg): Exactly 2 Clean, Compact, Organized Rows */}
+        <div className="lg:hidden flex flex-col gap-2">
+          {/* Row 1: Logo & Navigation + Right Actions (Sample, Reset, Download PDF) */}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Link
+                href="/"
+                className="p-1.5 text-slate-500 hover:text-slate-800 transition-colors rounded-lg hover:bg-slate-100"
+                title="Kembali ke Beranda"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </Link>
+              <div className="flex items-center gap-1.5">
+                <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-indigo-600 to-indigo-800 flex items-center justify-center text-white font-bold text-xs shadow-xs">
+                  SL
+                </div>
+                <div>
+                  <h1 className="text-xs font-bold text-slate-900 leading-none">SpaceLive</h1>
+                  <p className="text-[9px] text-slate-400 font-medium leading-none mt-0.5">CV Studio</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Actions: Sample, Reset, Export PDF */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={handleLoadSample}
+                className="p-1.5 bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 rounded-lg shadow-xs transition-colors cursor-pointer"
+                title="Muat Data Contoh"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              </button>
+
+              <button
+                type="button"
+                onClick={handleReset}
+                className="p-1.5 bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-rose-600 rounded-lg shadow-xs transition-colors cursor-pointer"
+                title="Kosongkan Semua Form"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+              </button>
+
+              <ExportBar
+                elementId="resume-preview"
+                candidateName={data.personal.fullName}
+                documentType={data.category === 'COVER_LETTER' ? 'Cover_Letter' : 'CV'}
+              />
+            </div>
+          </div>
+
+          {/* Row 2: Category Segmented Switcher & Template Selector Dropdown */}
+          <div className="flex items-center gap-2 pt-1 border-t border-slate-100">
+            {/* Category Segmented Control */}
+            <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-[11px] shrink-0">
+              <button
+                type="button"
+                onClick={() => handleSelectCategory('ATS')}
+                className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                  data.category === 'ATS'
+                    ? 'bg-white text-indigo-700 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                ATS
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSelectCategory('CREATIVE')}
+                className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                  data.category === 'CREATIVE'
+                    ? 'bg-white text-indigo-700 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Creative
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSelectCategory('COVER_LETTER')}
+                className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                  data.category === 'COVER_LETTER'
+                    ? 'bg-white text-indigo-700 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Surat
+              </button>
+            </div>
+
+            {/* Template Selector Dropdown */}
+            <div className="flex-1 min-w-0">
+              <select
+                value={data.templateId}
+                onChange={(e) => handleSelectTemplate(e.target.value)}
+                className="w-full bg-white border border-slate-300 text-slate-800 text-[11px] font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-xs truncate"
+              >
+                {TEMPLATES.filter((t) => t.category === data.category).map((tmpl) => (
+                  <option key={tmpl.id} value={tmpl.id}>
+                    {tmpl.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* DESKTOP VIEW (lg:) Single Spacious Row */}
+        <div className="hidden lg:flex max-w-[1700px] mx-auto items-center justify-between gap-3">
           {/* Logo & Navigation */}
-          <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+          <div className="flex items-center gap-4 w-auto justify-start">
             <Link
               href="/"
               className="flex items-center gap-2 text-slate-500 hover:text-slate-800 transition-colors text-xs font-medium"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">Beranda</span>
+              <span>Beranda</span>
             </Link>
 
             <div className="flex items-center gap-2 border-l border-slate-200 pl-3">
@@ -235,7 +343,7 @@ function BuilderContent() {
             </div>
 
             {/* Auto-save Status */}
-            <div className="hidden lg:flex items-center gap-1.5 text-[11px] text-slate-500 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-full">
+            <div className="flex items-center gap-1.5 text-[11px] text-slate-500 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-full">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>Tersimpan: {lastSavedTime}</span>
             </div>
@@ -297,7 +405,7 @@ function BuilderContent() {
           </div>
 
           {/* Right Actions: Sample, Reset, Export */}
-          <div className="flex items-center gap-2 w-full md:w-auto justify-end">
+          <div className="flex items-center gap-2 w-auto justify-end">
             <button
               type="button"
               onClick={handleLoadSample}
@@ -318,17 +426,6 @@ function BuilderContent() {
               <span className="hidden xl:inline">Reset</span>
             </button>
 
-            {/* Mobile Top Preview Button */}
-            <button
-              type="button"
-              onClick={() => setIsMobilePreviewOpen(true)}
-              className="lg:hidden px-2.5 py-1.5 bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-lg shadow-xs flex items-center gap-1.5 transition-all cursor-pointer active:scale-95"
-              title="Lihat Preview Dokumen"
-            >
-              <Eye className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
-              <span>Preview</span>
-            </button>
-
             {/* Export Bar */}
             <ExportBar
               elementId="resume-preview"
@@ -341,16 +438,16 @@ function BuilderContent() {
 
       {/* Main Studio Split-Screen Body */}
       <main className="flex-1 flex flex-col lg:flex-row max-w-[1750px] w-full mx-auto overflow-hidden">
-        {/* LEFT COLUMN: Form Wizard Panel */}
-        <section className="no-print w-full lg:w-[46%] xl:w-[42%] bg-white border-r border-slate-200 flex flex-col h-auto lg:h-[calc(100vh-60px)] shadow-xs">
-          {/* Form Tabs Header */}
-          <div className="border-b border-slate-200 bg-slate-50/70 px-4 py-2.5 flex items-center gap-1.5 overflow-x-auto">
+        {/* LEFT COLUMN: Form Wizard Panel (Pinned Tabs & Smooth Scroll Inside) */}
+        <section className="no-print w-full lg:w-[46%] xl:w-[42%] bg-white border-r border-slate-200 flex flex-col h-[calc(100dvh-88px)] lg:h-[calc(100vh-60px)] shadow-xs min-h-0">
+          {/* Form Tabs Header (SEMATKAN / PINNED: Stays fixed when filling form fields) */}
+          <div className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur-md px-3 sm:px-4 py-2 flex items-center gap-1.5 overflow-x-auto shadow-xs shrink-0 no-scrollbar">
             <button
               type="button"
               onClick={() => setActiveTab('personal')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === 'personal'
-                  ? 'bg-white text-indigo-600 shadow-xs border border-slate-200'
+                  ? 'bg-indigo-50 text-indigo-700 shadow-xs border border-indigo-200'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >

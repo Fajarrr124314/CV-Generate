@@ -49,19 +49,19 @@ export const ExportBar: React.FC<Props> = ({ elementId, candidateName, documentT
   };
 
   return (
-    <div className="flex items-center gap-1.5 flex-wrap">
+    <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
       {/* Primary: Export PDF */}
       <button
         type="button"
         disabled={!!isExporting}
         onClick={handleExportPDF}
-        className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition-all disabled:opacity-50 cursor-pointer"
+        className="px-2.5 sm:px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1 sm:gap-1.5 transition-all disabled:opacity-50 cursor-pointer shrink-0"
         title="Download PDF A4 Berkualitas Tinggi"
       >
         {isExporting === 'PDF' ? (
           <>
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            <span>Membuat PDF...</span>
+            <span><span className="hidden sm:inline">Membuat </span>PDF...</span>
           </>
         ) : isDone ? (
           <>
@@ -71,17 +71,17 @@ export const ExportBar: React.FC<Props> = ({ elementId, candidateName, documentT
         ) : (
           <>
             <FileDown className="w-3.5 h-3.5" />
-            <span>Download PDF</span>
+            <span><span className="hidden sm:inline">Download </span>PDF</span>
           </>
         )}
       </button>
 
-      {/* Secondary: PNG */}
+      {/* Secondary: PNG (Desktop / Tablet) */}
       <button
         type="button"
         disabled={!!isExporting}
         onClick={() => handleExportImage('png')}
-        className="px-2.5 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-medium rounded-lg shadow-xs flex items-center gap-1.5 transition-all disabled:opacity-50 cursor-pointer"
+        className="hidden sm:flex px-2.5 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-medium rounded-lg shadow-xs items-center gap-1.5 transition-all disabled:opacity-50 cursor-pointer"
         title="Download gambar PNG tajam"
       >
         {isExporting === 'PNG' ? (
@@ -89,15 +89,15 @@ export const ExportBar: React.FC<Props> = ({ elementId, candidateName, documentT
         ) : (
           <LucideImage className="w-3.5 h-3.5 text-slate-500" />
         )}
-        <span className="hidden sm:inline">PNG</span>
+        <span>PNG</span>
       </button>
 
-      {/* Secondary: JPG */}
+      {/* Secondary: JPG (Desktop / Tablet) */}
       <button
         type="button"
         disabled={!!isExporting}
         onClick={() => handleExportImage('jpeg')}
-        className="px-2.5 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-medium rounded-lg shadow-xs flex items-center gap-1.5 transition-all disabled:opacity-50 cursor-pointer"
+        className="hidden sm:flex px-2.5 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-medium rounded-lg shadow-xs items-center gap-1.5 transition-all disabled:opacity-50 cursor-pointer"
         title="Download gambar JPG"
       >
         {isExporting === 'JPEG' ? (
@@ -105,18 +105,18 @@ export const ExportBar: React.FC<Props> = ({ elementId, candidateName, documentT
         ) : (
           <Download className="w-3.5 h-3.5 text-slate-500" />
         )}
-        <span className="hidden sm:inline">JPG</span>
+        <span>JPG</span>
       </button>
 
-      {/* Native Print */}
+      {/* Native Print (Desktop / Tablet) */}
       <button
         type="button"
         onClick={printDocument}
-        className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-lg shadow-xs flex items-center gap-1.5 transition-all cursor-pointer"
+        className="hidden sm:flex px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-lg shadow-xs items-center gap-1.5 transition-all cursor-pointer"
         title="Print atau simpan langsung melalui dialog print browser"
       >
         <Printer className="w-3.5 h-3.5 text-slate-600" />
-        <span className="hidden sm:inline">Print</span>
+        <span>Print</span>
       </button>
     </div>
   );
