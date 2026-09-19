@@ -632,87 +632,54 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Elongated Advertising Banner: Jasa Pembuatan Website Portofolio (Positioned ABOVE Header) */}
-      <section className="relative bg-gradient-to-r from-slate-950 via-indigo-950/85 to-slate-950 border-b border-indigo-500/30 text-white overflow-hidden py-2.5 sm:py-3 px-3 sm:px-6 z-30 shadow-[0_4px_20px_rgba(79,70,229,0.15)]">
-        {/* Subtle top/ambient highlight lines */}
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent pointer-events-none" />
-        <div className="absolute -top-10 left-1/4 w-80 h-20 bg-indigo-500/15 blur-2xl pointer-events-none" />
-        <div className="absolute -top-10 right-1/4 w-80 h-20 bg-cyan-500/15 blur-2xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4 relative z-10">
-          {/* Left Column: Organic Model Thumbnail + Tag + Main Promo Text */}
-          <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 text-center sm:text-left min-w-0">
-            {/* Organic Model Visual (Circular Vignette Aura - NO Box) */}
-            <div className="relative shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-cyan-400/40 shadow-md shadow-cyan-500/20 bg-slate-900 flex items-center justify-center">
-              <img
-                src="/web-portfolio-model.jpg"
-                alt="Model Portofolio Web"
-                className="w-full h-full object-cover object-center scale-125"
-              />
-            </div>
-
-            {/* Tag & Offer Badges */}
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2">
-              <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-cyan-300 bg-cyan-500/15 border border-cyan-500/30 px-2 py-0.5 rounded">
-                JASA WEB PORTOFOLIO
+      {/* Slim Continuous Ticker Above Header (Simple & Calm, Not Flashy) */}
+      <aside className="relative bg-slate-950 border-b border-indigo-500/20 text-slate-300 overflow-hidden py-1.5 px-3 z-30 select-none">
+        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)]">
+          <div className="animate-marquee-right flex items-center gap-8 cursor-default">
+            {/* Ticker Set 1 */}
+            <div className="flex items-center gap-8 shrink-0 text-[11px] sm:text-xs font-medium">
+              <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Pembuatan CV & Cover Letter 100% Gratis Tanpa Watermark</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded">
-                Rp 150rb / Tahun
+              <span className="text-slate-600">•</span>
+              <span className="text-slate-200 flex items-center gap-1.5">
+                <span className="text-cyan-400 font-bold">Jasa Web Portofolio</span>
+                <span>Hanya Rp 150.000 / Tahun (Gratis Domain Sendiri & Garansi 3x Revisi)</span>
               </span>
+              <span className="text-slate-600">•</span>
+              <span className="text-slate-400 flex items-center gap-2">
+                <span>Fast Response:</span>
+                <span className="text-emerald-400 font-semibold">WA 0895806317711</span>
+                <span className="text-slate-600">|</span>
+                <span className="text-indigo-300">fajarnf77@gmail.com</span>
+              </span>
+              <span className="text-slate-600">•</span>
             </div>
 
-            {/* Headline and details */}
-            <div className="flex flex-col xl:flex-row xl:items-center gap-0.5 xl:gap-2">
-              <p className="text-xs sm:text-sm font-bold text-slate-100 leading-tight">
-                Mau CV Anda Jadi <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-violet-300">Website Portofolio Interaktif</span>?
-              </p>
-              <span className="hidden xl:inline text-indigo-400/50 text-xs">✦</span>
-              <p className="text-[11px] text-slate-300 hidden md:block">
-                Gratis Domain Sendiri • Garansi 3x Revisi • Siap Online Cepat
-              </p>
+            {/* Ticker Set 2 (Duplicate for Seamless Infinite Loop) */}
+            <div className="flex items-center gap-8 shrink-0 text-[11px] sm:text-xs font-medium" aria-hidden="true">
+              <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Pembuatan CV & Cover Letter 100% Gratis Tanpa Watermark</span>
+              </span>
+              <span className="text-slate-600">•</span>
+              <span className="text-slate-200 flex items-center gap-1.5">
+                <span className="text-cyan-400 font-bold">Jasa Web Portofolio</span>
+                <span>Hanya Rp 150.000 / Tahun (Gratis Domain Sendiri & Garansi 3x Revisi)</span>
+              </span>
+              <span className="text-slate-600">•</span>
+              <span className="text-slate-400 flex items-center gap-2">
+                <span>Fast Response:</span>
+                <span className="text-emerald-400 font-semibold">WA 0895806317711</span>
+                <span className="text-slate-600">|</span>
+                <span className="text-indigo-300">fajarnf77@gmail.com</span>
+              </span>
+              <span className="text-slate-600">•</span>
             </div>
-          </div>
-
-          {/* Right Column: Direct Contact CTA Buttons (WhatsApp & Gmail) + Syarat Ketentuan */}
-          <div className="flex items-center gap-2 shrink-0 flex-wrap justify-center">
-            {/* Syarat & Ketentuan Button */}
-            <button
-              type="button"
-              onClick={() => setIsPortfolioModalOpen(true)}
-              className="px-2.5 sm:px-3 py-1.5 bg-indigo-950/60 hover:bg-indigo-900/80 active:scale-95 text-indigo-300 hover:text-white text-xs font-semibold rounded-lg border border-indigo-500/30 flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap"
-              title="Lihat Syarat & Ketentuan Paket 150rb"
-            >
-              <HelpCircle className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Syarat & Ketentuan</span>
-            </button>
-
-            {/* WhatsApp CTA Button with Official WhatsApp Icon */}
-            <a
-              href="https://wa.me/62895806317711?text=Halo%20kak,%20saya%20tertarik%20dengan%20Jasa%20Pembuatan%20Web%20Portofolio%20(Paket%20150rb/tahun)"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 sm:px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 text-xs font-bold rounded-lg shadow-md shadow-emerald-500/25 flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer whitespace-nowrap shrink-0"
-              title="Hubungi langsung via WhatsApp: 0895806317711"
-            >
-              <WhatsAppOfficialIcon className="w-4 h-4 fill-slate-950" />
-              <span className="hidden sm:inline">WhatsApp: 0895806317711</span>
-              <span className="sm:hidden font-extrabold">0895806317711</span>
-              <ExternalLink className="w-3 h-3 text-slate-900" />
-            </a>
-
-            {/* Email CTA Button with Official Gmail Multi-color Icon */}
-            <a
-              href="mailto:fajarnf77@gmail.com?subject=Tanya%20Jasa%20Pembuatan%20Web%20Portofolio%20(Paket%20150rb)"
-              className="px-2.5 sm:px-3 py-1.5 bg-slate-900/90 hover:bg-slate-800 active:scale-95 text-slate-100 hover:text-white text-xs font-medium rounded-lg border border-slate-700/80 flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer whitespace-nowrap shrink-0"
-              title="Kirim email ke fajarnf77@gmail.com"
-            >
-              <GmailOfficialIcon className="w-4 h-4" />
-              <span className="hidden md:inline">fajarnf77@gmail.com</span>
-              <span className="md:hidden">Email</span>
-            </a>
           </div>
         </div>
-      </section>
+      </aside>
 
       {/* Top Header */}
       <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
@@ -828,6 +795,112 @@ export default function HomePage() {
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-emerald-400" />
               <span>Tersimpan Otomatis di Browser Anda</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Banner: Jasa Pembuatan Website Portofolio (Positioned BEFORE Template Showcase) */}
+      <section id="jasa-portofolio" className="py-12 sm:py-16 bg-gradient-to-b from-slate-950 via-indigo-950/40 to-slate-900 border-t border-b border-indigo-500/20 text-white relative overflow-hidden">
+        {/* Glow ambient background lights */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-indigo-600/10 blur-[130px] pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-600/10 blur-[130px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto bg-slate-900/90 border border-indigo-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left Column: Details & Order CTA */}
+              <div className="lg:col-span-7">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-cyan-400 bg-cyan-500/10 border border-cyan-500/25 px-2.5 py-0.5 rounded-md">
+                    JASA WEB PORTOFOLIO
+                  </span>
+                  <span className="text-[11px] font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-md">
+                    Promo Rp 150.000 / Tahun
+                  </span>
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
+                  Mau CV Anda Jadi <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-200 to-violet-300">Website Portofolio Interaktif & Siap Online</span>?
+                </h2>
+
+                <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Tampil lebih memukau di hadapan HRD & klien bisnis. Cukup <strong>Rp 150rb</strong> sudah aktif online 1 tahun penuh, gratis domain sendiri, fast loading, dan garansi 3x revisi sampai puas.
+                </p>
+
+                {/* Highlights Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
+                  <div className="flex items-center gap-2.5 text-xs text-slate-200">
+                    <BadgeCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Gratis Domain Sendiri (1 Thn)</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-slate-200">
+                    <RotateCcw className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <span>Garansi Maksimal 3x Revisi</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-slate-200">
+                    <Clock className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Pengerjaan Cepat 1-3 Hari</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-slate-200">
+                    <FileCheck className="w-4 h-4 text-indigo-400 shrink-0" />
+                    <span>100% Responsif di HP & Laptop</span>
+                  </div>
+                </div>
+
+                {/* Action CTA Buttons with Official Logos */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://wa.me/62895806317711?text=Halo%20kak,%20saya%20tertarik%20dengan%20Jasa%20Pembuatan%20Web%20Portofolio%20(Paket%20150rb/tahun)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 sm:px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 text-xs font-bold rounded-xl shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
+                  >
+                    <WhatsAppOfficialIcon className="w-4 h-4 fill-slate-950" />
+                    <span>WhatsApp: 0895806317711</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
+                  </a>
+
+                  <a
+                    href="mailto:fajarnf77@gmail.com?subject=Tanya%20Jasa%20Pembuatan%20Web%20Portofolio%20(Paket%20150rb)"
+                    className="px-3.5 sm:px-4 py-2.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-100 hover:text-white text-xs font-medium rounded-xl border border-slate-700 flex items-center gap-2 transition-all hover:scale-105 cursor-pointer whitespace-nowrap shadow-sm"
+                  >
+                    <GmailOfficialIcon className="w-4 h-4" />
+                    <span>fajarnf77@gmail.com</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsPortfolioModalOpen(true)}
+                    className="px-3.5 py-2.5 bg-indigo-950/60 hover:bg-indigo-900/80 active:scale-95 text-indigo-300 hover:text-white text-xs font-semibold rounded-xl border border-indigo-500/30 flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap"
+                  >
+                    <HelpCircle className="w-3.5 h-3.5 text-indigo-400" />
+                    <span>Syarat & Ketentuan</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Organic Model Visual (NO Box Borders) */}
+              <div className="lg:col-span-5 flex items-center justify-center">
+                <div className="relative w-full max-w-sm h-60 sm:h-64 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-cyan-500/20 blur-3xl rounded-full pointer-events-none" />
+
+                  <div className="relative w-full h-full overflow-hidden [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_85%)] flex items-center justify-center">
+                    <img
+                      src="/web-portfolio-model.jpg"
+                      alt="Model Portofolio Web"
+                      className="w-full h-full object-cover object-center scale-110"
+                    />
+                  </div>
+
+                  <div className="absolute top-2 right-2 px-3 py-1 rounded-full bg-slate-900/90 border border-emerald-500/50 text-emerald-300 text-[11px] font-bold shadow-xl backdrop-blur-md pointer-events-none">
+                    Rp 150rb / Tahun
+                  </div>
+                  <div className="absolute bottom-2 left-2 px-3 py-1 rounded-full bg-slate-900/90 border border-cyan-500/50 text-cyan-300 text-[11px] font-semibold shadow-xl backdrop-blur-md pointer-events-none">
+                    Gratis Domain Sendiri
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1000,122 +1073,6 @@ export default function HomePage() {
               <p className="text-xs text-slate-400 leading-relaxed">
                 Buat surat lamaran kerja resmi Bahasa Indonesia & Inggris dengan template kalimat terstruktur siap kirim.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dedicated Section: Jasa Pembuatan Website Portofolio */}
-      <section id="jasa-portofolio" className="py-20 bg-gradient-to-b from-slate-950 via-indigo-950/40 to-slate-950 border-t border-slate-800/80 relative overflow-hidden">
-        {/* Glow ambient background lights */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-indigo-600/10 blur-[130px] pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-600/10 blur-[130px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-xs font-bold text-emerald-300 mb-3">
-              <span>PROMO EKSKLUSIF — RP 150.000 / TAHUN</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Jasa Pembuatan Website Portofolio Interaktif
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-              Tampil memukau di hadapan HRD dan klien bisnis dengan portofolio web pribadi online yang cepat, responsif, dan siap dibagikan ke mana saja.
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto bg-slate-900/80 border border-indigo-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left Details */}
-              <div className="lg:col-span-7">
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-4xl sm:text-5xl font-black text-white">Rp 150.000</span>
-                  <span className="text-sm font-semibold text-slate-400">/ 1 Tahun Penuh</span>
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
-                  Paket lengkap siap pakai tanpa ribet coding atau setup server. Cukup kirimkan data CV Anda, kami ubah menjadi website portofolio profesional berkelas dunia.
-                </p>
-
-                {/* Terms & Highlights Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
-                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                    <BadgeCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">Gratis Domain 1 Tahun</h4>
-                      <p className="text-[11px] text-slate-400">Alamat web kustom (contoh: namakamu.site).</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                    <RotateCcw className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">Garansi 3x Revisi</h4>
-                      <p className="text-[11px] text-slate-400">Bebas revisi teks, foto, & penataan konten.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                    <Clock className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">Pengerjaan 1-3 Hari</h4>
-                      <p className="text-[11px] text-slate-400">Proses kilat, langsung online siap pakai.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                    <FileCheck className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">100% Responsif & SEO</h4>
-                      <p className="text-[11px] text-slate-400">Optimal di HP, tablet, & monitor laptop.</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Direct Action Order Buttons */}
-                <div className="flex flex-wrap items-center gap-3">
-                  <a
-                    href="https://wa.me/62895806317711?text=Halo%20kak,%20saya%20tertarik%20dengan%20Jasa%20Pembuatan%20Web%20Portofolio%20(Paket%20150rb/tahun)"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-3 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 text-xs font-bold rounded-xl shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
-                  >
-                    <WhatsAppOfficialIcon className="w-4 h-4 fill-slate-950" />
-                    <span>Pesan via WhatsApp (0895806317711)</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
-                  </a>
-
-                  <a
-                    href="mailto:fajarnf77@gmail.com?subject=Pesan%20Jasa%20Pembuatan%20Web%20Portofolio%20(Paket%20150rb)"
-                    className="px-4 py-3 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 hover:text-white text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
-                  >
-                    <GmailOfficialIcon className="w-4 h-4" />
-                    <span>fajarnf77@gmail.com</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Right Model Visual (Organic Vignette Silhouette - NO Box borders) */}
-              <div className="lg:col-span-5 flex items-center justify-center">
-                <div className="relative w-full max-w-sm h-64 sm:h-72 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-cyan-500/20 blur-3xl rounded-full pointer-events-none" />
-                  
-                  <div className="relative w-full h-full overflow-hidden [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_85%)] flex items-center justify-center">
-                    <img
-                      src="/web-portfolio-model.jpg"
-                      alt="Model Showcase Portofolio"
-                      className="w-full h-full object-cover object-center scale-110"
-                    />
-                  </div>
-
-                  <div className="absolute top-4 right-2 px-3 py-1 rounded-full bg-slate-900/90 border border-emerald-500/50 text-emerald-300 text-[11px] font-bold shadow-xl backdrop-blur-md">
-                    Rp 150rb / Tahun
-                  </div>
-                  <div className="absolute bottom-4 left-2 px-3 py-1 rounded-full bg-slate-900/90 border border-cyan-500/50 text-cyan-300 text-[11px] font-semibold shadow-xl backdrop-blur-md">
-                    Gratis Domain Sendiri
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
